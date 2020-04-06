@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html>
+	<style>
+		body {
+			background-image: url("https://cdn.discordapp.com/attachments/686725671246233626/695754083021226044/screen.jpg");
+			background-size: 100% cover ;
+	
+		}
+	</style>
 	<head>
 		<meta charset="utf-8">
 		<title>Login</title>
 		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-        <style>
-		    body {
-                background-image: url("https://cdn.discordapp.com/attachments/686725671246233626/695755525543165993/background.jpg");
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-            }
-		</style>
+		
+
 	</head>
 	<body>
+
 		<div class="login">
-            <p style="text-align: center;"><img src="https://cdn.discordapp.com/attachments/686725671246233626/695755494517768253/user.png"
-                alt="login logo" width="100" height="100"></p>
 			<h1>Login</h1>
 			<div class="links">
 				<a href="{{ url_for('login') }}" class="active">Login</a>
@@ -33,6 +32,7 @@
 				<input type="password" name="password" placeholder="Password" id="password" required>
 				<div class="msg">{{ msg }}</div>
 				<input type="submit" value="Login">
+
 			</form>
 		</div>
 	</body>
