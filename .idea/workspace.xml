@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="62c7f877-21b3-4c45-8ea1-b1abb180c5e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1586110098004</updated>
       <workItem from="1586110175433" duration="1941000" />
-      <workItem from="1586118998553" duration="3974000" />
+      <workItem from="1586118998553" duration="7360000" />
     </task>
     <servers />
   </component>
@@ -85,9 +87,9 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="427" y="116" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1586116280234" />
-    <state x="150" y="3" key="SettingsEditor" timestamp="1586124695993">
+    <state x="150" y="3" key="SettingsEditor" timestamp="1586129767103">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="150" y="3" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1586124695993" />
+    <state x="150" y="3" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1586129767103" />
   </component>
 </project>
