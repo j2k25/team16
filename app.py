@@ -8,7 +8,7 @@ from mysql.connector import Error
 
 app = Flask(__name__)
 
-# app.secret_key = 'hotdog'
+app.secret_key = 'hotdog'
 
 app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-01.cleardb.net'
 app.config['MYSQL_USER'] = 'b2c04ab25f2fad'
