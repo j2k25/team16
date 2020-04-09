@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<h2>Reports Page</h2>
+<div>
+    <p>This be the Gaemer Report:</p>
+    <table>
+        <tr>
+            <td>Username:</td>
+            <td>{{ account['username'] }}</td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td>{{ account['password'] }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
