@@ -5,53 +5,48 @@
   	-webkit-font-smoothing: antialiased;
   	-moz-osx-font-smoothing: grayscale;
 }
-
 body {
-	
   	background-color: #435165;
   	margin: 0;
-
 }
-
-
-.login {
+.login, .insert {
   	width: 400px;
   	background-color: #ffffff;
   	box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
   	margin: 100px auto;
 }
-.login h1 {
+.login h1, .insert h1 {
   	text-align: center;
   	color: #5b6574;
   	font-size: 24px;
   	padding: 20px 0 20px 0;
   	border-bottom: 1px solid #dee0e4;
 }
-.login .links {
+.login .links, .insert .links {
   	display: flex;
   	padding: 0 15px;
 }
-.login .links a {
+.login .links a, .insert .links a {
   	color: #adb2ba;
   	text-decoration: none;
   	display: inline-flex;
   	padding: 0 10px 10px 10px;
   	font-weight: bold;
 }
-.login .links a:hover {
+.login .links a:hover, .insert .links a:hover {
   	color: #9da3ac;
 }
-.login .links a.active {
+.login .links a.active, .insert .links a.active {
   	border-bottom: 3px solid #3274d6;
   	color: #3274d6;
 }
-.login form {
+.login form, .insert form {
   	display: flex;
   	flex-wrap: wrap;
   	justify-content: center;
   	padding-top: 20px;
 }
-.login form label {
+.login form label, .insert form label {
   	display: flex;
   	justify-content: center;
   	align-items: center;
@@ -60,7 +55,7 @@ body {
   	background-color: #3274d6;
   	color: #ffffff;
 }
-.login form input[type="password"], .login form input[type="text"] {
+.login form input[type="password"], .login form input[type="text"], .login form input[type="email"], .insert form input[type="password"], .insert form input[type="text"], .insert form input[type="email"] {
   	width: 310px;
   	height: 50px;
   	border: 1px solid #dee0e4;

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="62c7f877-21b3-4c45-8ea1-b1abb180c5e5" name="Default Changelist" comment="" />
+    <list default="true" id="62c7f877-21b3-4c45-8ea1-b1abb180c5e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/insert.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insert.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +77,7 @@
       <workItem from="1586118998553" duration="10268000" />
       <workItem from="1586160596104" duration="2494000" />
       <workItem from="1586335119942" duration="6845000" />
-      <workItem from="1586383131004" duration="9492000" />
+      <workItem from="1586383131004" duration="15863000" />
     </task>
     <servers />
   </component>
@@ -90,22 +96,22 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="315" y="119" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1586383332112" />
-    <state width="1246" height="278" key="GridCell.Tab.0.bottom" timestamp="1586472199727">
+    <state width="1281" height="182" key="GridCell.Tab.0.bottom" timestamp="1586554900798">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1246" height="278" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586472199727" />
-    <state width="1246" height="278" key="GridCell.Tab.0.center" timestamp="1586472199726">
+    <state width="1281" height="182" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1586554900798" />
+    <state width="1281" height="182" key="GridCell.Tab.0.center" timestamp="1586554900797">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1246" height="278" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1586472199726" />
-    <state width="1246" height="278" key="GridCell.Tab.0.left" timestamp="1586472199726">
+    <state width="1281" height="182" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1586554900797" />
+    <state width="1281" height="182" key="GridCell.Tab.0.left" timestamp="1586554900797">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1246" height="278" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1586472199726" />
-    <state width="1246" height="278" key="GridCell.Tab.0.right" timestamp="1586472199726">
+    <state width="1281" height="182" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1586554900797" />
+    <state width="1281" height="182" key="GridCell.Tab.0.right" timestamp="1586554900797">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1246" height="278" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1586472199726" />
+    <state width="1281" height="182" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1586554900797" />
     <state x="150" y="3" key="SettingsEditor" timestamp="1586129767103">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -116,6 +122,6 @@
     <state x="354" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1586383140119" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/dbtest$dbtest.coverage" NAME="dbtest Coverage Results" MODIFIED="1586472199689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/dbtest$dbtest.coverage" NAME="dbtest Coverage Results" MODIFIED="1586554900754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
