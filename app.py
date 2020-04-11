@@ -8,10 +8,12 @@ app = Flask(__name__)
 
 app.secret_key = 'hotdog'
 
-app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-01.cleardb.net'
-app.config['MYSQL_USER'] = 'b2c04ab25f2fad'
-app.config['MYSQL_PASSWORD'] = 'e2f37027'
-app.config['MYSQL_DB'] = 'heroku_4f71138a5925978'
+
+
+app.config['MYSQL_HOST'] = 'rtzsaka6vivj2zp1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'yukolhm10l2bxf76'
+app.config['MYSQL_PASSWORD'] = 'ondoxpul1ezwcq9w'
+app.config['MYSQL_DB'] = 'bjbx4fmvqoqiij60'
 
 # Initialize MySQL
 mysql = MySQL(app)
