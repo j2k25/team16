@@ -20,12 +20,20 @@
             <td>{{ account['password'] }}</td>
         </tr>
         <tr>
-            <td>Last Clock In:</td>
+            <td>Is Manager:</td>
+            <td>{{ account['is_manager'] }}</td>
+        </tr>
+        <tr>
+            <td>Last Logged In Session:</td>
             <td>{{ account['log_in'] }}</td>
         </tr>
         <tr>
-            <td>Last Clock Out:</td>
+            <td>Last Logged Out Session:</td>
             <td>{{ account['log_out'] }}</td>
+        </tr>
+        <tr>
+            <td>Total Session Time Logged:</td>
+            <td>{{ account['total_session_time'] }}</td>
         </tr>
     </table>
 </div>

@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %}Insert{% endblock %}
+
+{% block content %}
+<h2>Insert a New Task to a Project</h2>
+
+<p>
+    <a href="{{ url_for('insert') }}">Go Back</a>
+
+
+<div class="inserttask">
+
+			<form action="{{ url_for('inserttask') }}" method="post" autocomplete="off">
+				<label for="project_id">
+					<i class="fas fa-user"></i>
+				</label>
+
+<input type="number" name="project_id" placeholder="Project ID" id="project_id" required>
+<label for="description">
+
+
+<label for="name">
+					<i class="fas fa-user"></i>
+				</label>
+<input type="text" name="name" placeholder="Name" id="name" required>
+<label for="description">
+<p>
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="description" placeholder="Description" id="description" required>
+<p>Enter the Planned Start Date and the Planned End Date</p>
+				<label for="start_date">
+					<i class="fas fa-envelope"></i>
+				</label>
+
+				<input type="date" name="start_date" placeholder="Planned Start Date" id="start_date" required>
+				<label for="end_date">
+					<i class="fas fa-envelope"></i>
+				</label>
+				<input type="date" name="end_date" placeholder="Planned End Date" id="end_date" required>
+</p>
+<p>
+				<label for="budget">
+					<i class="fas fa-envelope"></i>
+				</label>
+				<input type="number" name="budget" placeholder="Budget" id="budget" required step=".01">
+
+
+				<div class="msg">{{ msg }}</div>
+				<input type="submit" value="inserttask">
+			</form>
+		</div>
+{% endblock %}

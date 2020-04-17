@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+<h2>Projects: Tasks Page</h2>
+    <div>
+    <p>{{ msg }}</p>
+    <form action="{{ url_for('projects') }}" method="post">
+				<label for="project_id"> </label>
+				<input type="text" name="project_id" placeholder="Project Id" id="project_id" required>
+				<input type="submit" value="View Project Tasks">
+    </form>
+    <p></p>
+    {% if session['valid_project'] %}
+        <a href="{{ url_for('tasks') }}">View Task Assignments</a>
+        <p>Project Task information: </p>
+            {% for row in list %}
+            <table>
+                <tr>
+                    <td> Task id: </td>
+                    <td> {{ row['id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Task Name: </td>
+                    <td> {{ row['task_name'] }} </td>
+                </tr>
+                <tr>
+                    <td> Description: </td>
+                    <td> {{ row['description'] }} </td>
+                </tr>
+                <tr>
+                    <td> Planned Start Date: </td>
+                    <td> {{ row['planned_start_date'] }} </td>
+                </tr>
+                <tr>
+                    <td> Planned End Date: </td>
+                    <td> {{ row['planned_end_date'] }} </td>
+                </tr>
+                <tr>
+                    <td> Planned Budget: </td>
+                    <td> ${{ row['planned_budget'] }} </td>
+                </tr>
+                <tr>
+                    <td> Actual End Date: </td>
+                    <td> {{ row['actual_end_date'] }} </td>
+                </tr>
+                <tr>
+                    <td> Actual Budget: </td>
+                    <td> ${{ row['actual_budget'] }} </td>
+                </tr>
+            </table>
+                <p></p>
+            {% endfor %}
+    {% endif %}
+    <a href="{{ url_for('manager_home') }}">Return to Manager Home Page</a>
+    </div>
+{% endblock %}

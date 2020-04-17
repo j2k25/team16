@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Manager Home Page</h2>
+    <div>
+    <p>Welcome back!</p>
+        <p>Your current assignments:</p>
+        (<a href="{{ url_for('assignments') }}">Clock In / Out</a>)
+    {% for row in list2 %}
+            <table>
+                <tr>
+                    <td> Assigned id: </td>
+                    <td> {{ row['id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Task id: </td>
+                    <td> {{ row['task_id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Total time: </td>
+                    <td> {{ row['total_time'] }} </td>
+                </tr>
+            </table>
+            <p></p>
+    {% endfor %}
+    </div>
+    <div>
+        <p>Project Manager Tools:</p>
+        <p>
+        <a href="{{ url_for('insert') }}">Insert</a>
+        </p>
+        <p>
+            <a href="{{ url_for('update') }}">Update</a>
+        </p>
+        <p>
+            <a href="{{ url_for('delete') }}">Delete</a>
+        </p>
+    </div>
+    <div>
+    (<a href="{{ url_for('projects') }}">View Project Tasks</a>)
+    <p>All Projects:</p>
+    {% for row in list %}
+            <table>
+                <tr>
+                    <td> Project id: </td>
+                    <td> {{ row['id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Project Name: </td>
+                    <td> {{ row['project_name'] }} </td>
+                </tr>
+                <tr>
+                    <td> Project Description: </td>
+                    <td> {{ row['project_description'] }} </td>
+                </tr>
+                <tr>
+                    <td> Planned Start Date: </td>
+                    <td> {{ row['planned_start_date'] }} </td>
+                </tr>
+                <tr>
+                    <td> Planned End Date: </td>
+                    <td> {{ row['planned_end_date'] }} </td>
+                </tr>
+                <tr>
+                    <td> Planned Budget: </td>
+                    <td> ${{ row['planned_budget'] }} </td>
+                </tr>
+                <tr>
+                    <td> Actual End Date: </td>
+                    <td> {{ row['actual_end_date'] }} </td>
+                </tr>
+                <tr>
+                    <td> Actual Budget: </td>
+                    <td> ${{ row['actual_budget'] }} </td>
+                </tr>
+                <tr>
+                    <td> Task Completion Status: </td>
+                    <td> {{ row['status_on_tasks'] }}% </td>
+                </tr>
+            </table>
+            <p></p>
+    {% endfor %}
+    </div>
+{% endblock %}

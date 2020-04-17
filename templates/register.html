@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html>
-	<style>
-		body {
-			background-image: url("https://cdn.discordapp.com/attachments/686725671246233626/695754083021226044/screen.jpg");
-			background-size: 100% cover;
-		}
-    </style>
-
-    <head>
+	<head>
 		<meta charset="utf-8">
-		<title>Login</title>
+		<title>Register</title>
 		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 	</head>
-
 	<body>
-		<div class="login">
-			<h1>Login</h1>
+		<div class="register">
+			<h1>Register</h1>
 			<div class="links">
-				<a href="{{ url_for('login') }}" class="active">Login</a>
+				<a href="{{ url_for('login') }}">Login</a>
+				<a href="{{ url_for('register') }}" class="active">Register</a>
 			</div>
-			<form action="{{ url_for('login') }}" method="post">
+			<form action="{{ url_for('register') }}" method="post" autocomplete="off">
 				<label for="username">
 					<i class="fas fa-user"></i>
 				</label>
@@ -29,7 +23,7 @@
 				</label>
 				<input type="password" name="password" placeholder="Password" id="password" required>
 				<div class="msg">{{ msg }}</div>
-				<input type="submit" value="Login">
+				<input type="submit" value="Register">
 			</form>
 		</div>
 	</body>

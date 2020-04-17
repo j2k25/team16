@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Insert{% endblock %}
+
+{% block content %}
+<h2>Insert Into Account</h2>
+
+<p>
+    <a href="{{ url_for('insert') }}">Go Back</a>
+
+
+<div class="insertaccount">
+
+			<form action="{{ url_for('insertaccount') }}" method="post" autocomplete="off">
+				<label for="name">
+					<i class="fas fa-user"></i>
+				</label>
+<input type="text" name="name" placeholder="Name" id="name" required>
+<label for="username">
+					<i class="fas fa-user"></i>
+				</label>
+				<input type="text" name="username" placeholder="Username" id="username" required>
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input type="password" name="password" placeholder="Password" id="password" required>
+				<label for="is_manager">
+					<i class="fas fa-envelope"></i>
+				</label>
+				<input type="number" name="is_manager" placeholder="0 Employee, 1 Manager" id="is_manager" required>
+				<div class="msg">{{ msg }}</div>
+				<input type="submit" value="insertaccount">
+			</form>
+		</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block title %}Delete{% endblock %}
+
+{% block content %}
+<h2>Delete Page</h2>
+<p>What would you like to delete?</p>
+<p>
+    <a href="{{ url_for('deleteassigned') }}">Assigned</a>
+</p>
+<p>
+    <a href="{{ url_for('deleteaccount') }}">Account</a>
+</p>
+<p>
+    <a href="{{ url_for('deletetask') }}">Task</a>
+</p>
+<p>
+    <a href="{{ url_for('deleteproject') }}">Project</a>
+</p>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+<h2>Tasks: Assignments Page</h2>
+<div>
+    <p>{{ msg }}</p>
+    <form action="{{ url_for('tasks') }}" method="post">
+				<label for="task_id"> </label>
+				<input type="text" name="task_id" placeholder="Task Id" id="task_id" required>
+				<input type="submit" value="View Task Assignments">
+    </form>
+    <p></p>
+    {% if session['valid_task'] %}
+        <p>Task Assignment information: </p>
+            {% for row in list %}
+            <table>
+                <tr>
+                    <td> Assigned id: </td>
+                    <td> {{ row['id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Task id: </td>
+                    <td> {{ row['task_id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Employee Account id: </td>
+                    <td> {{ row['employee_account_id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Last Clock In Time: </td>
+                    <td> {{ row['clock_in'] }} </td>
+                </tr>
+                <tr>
+                    <td> Last Clock Out Time: </td>
+                    <td> {{ row['clock_out'] }} </td>
+                </tr>
+                <tr>
+                    <td> Total Time Logged: </td>
+                    <td> {{ row['total_time'] }} </td>
+                </tr>
+            </table>
+                <p></p>
+            {% endfor %}
+    {% endif %}
+    <a href="{{ url_for('projects') }}">Return to Project Tasks</a>
+</div>
+{% endblock %}

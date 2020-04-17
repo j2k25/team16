@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}Delete{% endblock %}
+
+{% block content %}
+<h2>Delete an Assignment</h2>
+
+<p>
+    <a href="{{ url_for('delete') }}">Go Back</a>
+
+
+<div class="deleteassigned">
+
+			<form action="{{ url_for('deleteassigned') }}" method="post" autocomplete="off">
+				<label for="assign_id">
+					<i class="fas fa-user"></i>
+				</label>
+<input type="number" name="assign_id" placeholder="Assignment ID" id="assign_id" required>
+
+
+				<div class="msg">{{ msg }}</div>
+				<input type="submit" value="deleteassigned">
+			</form>
+		</div>
+{% endblock %}

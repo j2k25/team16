@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<h2>Reports Page</h2>
+    <p>Is Manager: {{ account['is_manager'] }}</p>
+<div>
+    <p>This will be the Assigned Report:</p>
+        {% for row in list %}
+<table>
+
+            <tr>
+
+                <td> {{ row['update_type'] }} </td> 
+		<td> {{ row['entity'] }} </td> 
+		<td> {{ row['change_date'] }} </td> 
+            </tr>
+
+            </table></a>
+            <p></p>
+        {% endfor %}
+
+
+
+
+</div>
+{% endblock %}

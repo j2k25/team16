@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}Update{% endblock %}
+
+{% block content %}
+<h2>Update Page</h2>
+<p>What would you like to update?</p>
+<p>
+    <a href="{{ url_for('updateassigned') }}">Assigned</a>
+</p>
+<p>
+    <a href="{{ url_for('updatetask') }}">Task</a>
+</p>
+<p>
+    <a href="{{ url_for('updateproject') }}">Project</a>
+</p>
+
+
+
+{% endblock %}

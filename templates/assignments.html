@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Assignments{% endblock %}
+
+{% block content %}
+<h2>Employee: Assignment Page</h2>
+    <div>
+    <p>{{ msg }}</p>
+    <form action="{{ url_for('assignments') }}" method="post">
+				<label for="assigned_id"> </label>
+				<input type="text" name="assigned_id" placeholder="Assigned Id" id="assigned_id" required>
+				<input type="submit" value="Clock In / Out">
+    </form>
+
+    <p>Clocked In: {{session['clocked_in']}}</p>
+    {% if session['clocked_in'] %}
+        <p>Current session information: </p>
+        <table>
+            <tr>
+                <td> Assignment id: </td>
+                <td>{{ session['ass_id'] }}</td>
+            </tr>
+            <tr>
+                <td> Task id: </td>
+                <td>{{ session['task_id'] }}</td>
+            </tr>
+            <tr>
+                <td> Total time logged: </td>
+                <td>{{ session['total_time'] }}</td>
+            </tr>
+        </table>
+    {% endif %}
+    <a href="{{ url_for('employee_home') }}">Return to Employee Home</a>
+    </div>
+{% endblock %}
