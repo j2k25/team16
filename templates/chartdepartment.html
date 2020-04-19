@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %}Chart{% endblock %}
+
+{% block content %}
+
+
+
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Efficiency',     {{ efficiency }}],
+          ['Not Utilized',      {{ not_utilized }}],
+        ]);
+
+        var options = {
+          title: 'Department Time Efficiency',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
+<div>
+
+Department: <td> {{ departmentname }} </td>
+<p>
+Total Hours of Work: <td> {{ departmenthours }} </td>
+
+
+</div>
+
+
+
+
+
+
+{% endblock %}

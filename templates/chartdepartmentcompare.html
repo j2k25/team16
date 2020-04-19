@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block title %}Chart{% endblock %}
+
+{% block content %}
+
+
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+
+        var button = document.getElementById('change-chart');
+        var chartDiv = document.getElementById('chart_div');
+
+        var data = google.visualization.arrayToDataTable([
+          ['Department Name', 'Efficiency'],
+          
+
+{% for row in list %}
+
+	['{{ row['department_name'] }}' , {{ row['efficiency'] }}],
+
+{% endfor %}
+
+	
+
+
+        ]);
+
+        var materialOptions = {
+          width: 700,
+          chart: {
+            title: 'Department Efficiency Comparisons',
+            subtitle: 'Work Time divided by Total Time'
+          }
+        };
+
+
+
+        function drawMaterialChart() {
+          var materialChart = new google.charts.Bar(chartDiv);
+          materialChart.draw(data, google.charts.Bar.convertOptions(materialOptions));
+
+        }
+
+        drawMaterialChart();
+    };
+    </script>
+  </head>
+  <body>
+    <br><br>
+    <div id="chart_div" style="width: 1000px; height: 500px;"></div>
+  </body>
+</html>
+
+<div>
+{% for row in list %}
+<p>
+Department: {{ row['department_name'] }}
+<p>
+ID: {{ row['id'] }}
+</p>
+{% endfor %}
+</div>
+
+
+
+
+
+{% endblock %}

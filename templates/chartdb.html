@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}Chart{% endblock %}
+
+{% block content %}
+
+
+
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Update',     {{ updatetrack }}],
+          ['Delete',      {{ deletetrack }}],
+          ['Insert',  {{ inserttrack }}],
+        ]);
+
+        var options = {
+          title: 'Database Interactions',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
+<div>
+
+{% for row in list %}
+<table>
+
+            <tr>
+
+                <td> {{ row['update_type'] }} </td> 
+		<td> {{ row['entity'] }} </td>
+                <td> {{ row['entity_id'] }} </td>
+		<td> {{ row['change_date'] }} </td>
+                <td> {{ row['old_value'] }} </td>
+                <td> {{ row['new_value'] }} </td>
+            </tr>
+
+            </table></a>
+<p></p>
+        {% endfor %}
+
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<h2>Database Interactions</h2>
+
+<p>
+
+
+<div class="dbchart">
+
+			<form action="{{ url_for('chartdb') }}" method="post" autocomplete="off">
+				<label for="timeframe">
+					<i class="fas fa-user"></i>
+				</label>
+<input type="number" name="timeframe" placeholder="Enter Amount" id="timeframe" required>
+
+<p>
+  <input type="radio" id="h" name="method" value="h">
+  <label for="h">Hour</label><br>
+
+  <input type="radio" id="d" name="method" value="d">
+  <label for="d">Day</label><br>
+
+  <input type="radio" id="m" name="method" value="m">
+  <label for="m">Month</label>
+
+
+
+				<div class="msg">{{ msg }}</div>
+				<input type="submit" value="View Change Log">
+			</form>
+		</div>
+{% endblock %}

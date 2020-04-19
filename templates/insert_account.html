@@ -12,28 +12,33 @@
 <div class="insert_account">
 
 			<form action="{{ url_for('insert_account') }}" method="post" autocomplete="off">
-				<label for="name">
-					<i class="fas fa-user"></i>
-				</label>
+                <label for="dept_id"> <i class="fas fa-user"></i> </label>
+                <input type="number" name="dept_id" placeholder="Department Id" id="dept_id" required>
+
+				<label for="name"> <i class="fas fa-user"></i> </label>
                 <input type="text" name="name" placeholder="Name" id="name" required>
-                <label for="username">
-					<i class="fas fa-user"></i>
-				</label>
+
+                <label for="username"><i class="fas fa-user"></i> </label>
 				<input type="text" name="username" placeholder="Username" id="username" required>
-				<label for="password">
-					<i class="fas fa-lock"></i>
-				</label>
+
+				<label for="password"> <i class="fas fa-lock"></i> </label>
 				<input type="password" name="password" placeholder="Password" id="password" required>
+
+                <p></p>
+
 				<label for="is_manager">
 					<i class="fas fa-envelope"></i>
 				</label>
 				<input type="number" name="is_manager" placeholder="0 Employee, 1 Manager" id="is_manager" required>
+
                 <label for="hourly_wage">
 					<i class="fas fa-envelope"></i>
 				</label>
 				<input type="number" name="hourly_wage" placeholder="Hourly Wage" id="hourly_wage" required step=".01">
+
 				<div class="msg">{{ msg }}</div>
-				<input type="submit" value="insert_account">
+				<p></p>
+				<input type="submit" value="Insert Account">
 			</form>
 		</div>
 {% endblock %}

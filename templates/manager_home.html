@@ -5,7 +5,7 @@
 {% block content %}
 <h2>Manager Home Page</h2>
     <div>
-    <p>Welcome back!</p>
+    <p>Welcome back! {{ account['name'] }}</p>
         <p>Your current assignments:</p>
         (<a href="{{ url_for('assignments') }}">Clock In / Out</a>)
     {% for row in list2 %}
@@ -44,7 +44,7 @@
     {% for row in list %}
             <table>
                 <tr>
-                    <td> Project id: </td>
+                    <td> Project Id: </td>
                     <td> {{ row['id'] }} </td>
                 </tr>
                 <tr>
@@ -54,6 +54,10 @@
                 <tr>
                     <td> Project Description: </td>
                     <td> {{ row['project_description'] }} </td>
+                </tr>
+                <tr>
+                    <td> Department Id: </td>
+                    <td> {{ row['department_id'] }} </td>
                 </tr>
                 <tr>
                     <td> Planned Start Date: </td>

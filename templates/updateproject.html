@@ -5,15 +5,15 @@
 {% block content %}
 <h2>Update a Project</h2>
 
-<p>
-    <a href="{{ url_for('update') }}">Go Back</a>
+
+    <a href="{{ url_for('update') }}">Go Back</a></p>
 
 
 <div class="updateproject">
 
 			<form action="{{ url_for('updateproject') }}" method="post" autocomplete="off">
 <label for="project_id">
-<p>
+
 					<i class="fas fa-user"></i>
 				</label>
 				<input type="number" name="project_id" placeholder="Project ID" id="project_id" required>
@@ -24,10 +24,12 @@
 
 <input type="text" name="name" placeholder="Name" id="name" required>
 <label for="description">
-<p>
+
 					<i class="fas fa-user"></i>
 				</label>
 				<input type="text" name="description" placeholder="Description" id="description" required>
+				<p></p>
+
 <p>Enter the Planned Start Date and the Planned End Date</p>
 				<label for="start_date">
 					<i class="fas fa-envelope"></i>
@@ -39,7 +41,7 @@
 				</label>
 				<input type="date" name="end_date" placeholder="Planned End Date" id="end_date" required>
 </p>
-<p>
+
 				<label for="budget">
 					<i class="fas fa-envelope"></i>
 				</label>
@@ -59,7 +61,7 @@
 
 
 				<div class="msg">{{ msg }}</div>
-				<input type="submit" value="updateproject">
+				</p><input type="submit" value="Update Project">
 			</form>
 		</div>
 {% endblock %}

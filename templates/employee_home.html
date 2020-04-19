@@ -5,7 +5,7 @@
 {% block content %}
 <h2>Employee Home Page</h2>
     <div>
-    <p>Welcome back!</p>
+    <p>Welcome back!  {{ account['name'] }}</p>
     <p>Your current assignments:</p>
     (<a href="{{ url_for('assignments') }}">Clock In / Out</a>)
     {% for row in list %}

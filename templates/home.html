@@ -4,7 +4,7 @@
 
 {% block content %}
 <h2>Home Page</h2>
-<p>Welcome back!</p>
+<p>Welcome back! {{ account['name'] }}</p>
     <p><a href="{{ url_for('insert_account') }}">Account</a></p>
     <p><a href="{{ url_for('timestamp') }}">Clock In/Out</a></p>
 {% endblock %}

@@ -1,9 +1,9 @@
 from __future__ import print_function
 import re
+import MySQLdb
 import MySQLdb.cursors
 import mysql.connector
 # from beautifultable import BeautifulTable
-
 # import numpy
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
@@ -20,7 +20,6 @@ app.config['MYSQL_DB'] = 'bjbx4fmvqoqiij60'
 
 # Initialize MySQL
 mysql = MySQL(app)
-
 
 # http://localhost:5000/pythonlogin/ - this will be the login page, we need to use both GET and POST requests
 
@@ -78,10 +77,19 @@ def timestamp():
 # http://localhost:5000/python/logout - this will be the logout page
 @app.route('/logout')
 def logout():
+    if session['clocked_in'] is True:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('update assigned SET `clock_out` = current_timestamp() WHERE  id = %s and'
+                       '`employee_account_id` = %s', (session['ass_id'], session['id'],))
+        mysql.connection.commit()
+        session['clocked_in'] = False
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('update employee_accounts SET `log_out` = current_timestamp() WHERE  id = %s', (session['id'],))
     mysql.connection.commit()
     cursor.execute('update employee_accounts set `total_session_time` = `log_out` - `log_in` where id = %s',
+                   (session['id'],))
+    mysql.connection.commit()
+    cursor.execute('update employee_accounts set `total_login` = `total_login` + `total_session_time` where id = %s',
                    (session['id'],))
     mysql.connection.commit()
     # Remove session data, this will log the user out
@@ -236,6 +244,185 @@ def manager_reports():
     return redirect(url_for('login'))
 
 
+@app.route('/chartdb', methods=['GET', 'POST'])
+def chartdb():
+    if request.method == 'POST' and 'timeframe' in request.form:
+        # We need all the account info for the user so we can display it on the profile page
+        updatecount = 0
+        insertcount = 0
+        deletecount = 0
+        value = int(request.form['timeframe'])
+        method = request.form['method']
+        print(value)
+        print(method)
+        time = 0
+        if method == 'h':
+            m = 10000
+        if method == 'd':
+            m = 240000
+        if method == 'm':
+            m = 7320000
+        time = value * m
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * from change_log where change_date >= subtime(current_timestamp(), %s) and update_type = %s',(time,'UPDATE',))
+        while True:
+            row = cursor.fetchone()
+            if row is None:
+                break
+            updatecount = updatecount + 1
+            print(row)
+
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * from change_log where change_date >= subtime(current_timestamp(), %s) and update_type = %s',(time,'INSERT',))
+        while True:
+            row2 = cursor.fetchone()
+            if row2 is None:
+                break
+            insertcount = insertcount + 1
+            print(row)
+
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * from change_log where change_date >= subtime(current_timestamp(), %s) and update_type = %s',(time,'DELETE',))
+        while True:
+            row3 = cursor.fetchone()
+            if row3 is None:
+                break
+            deletecount = deletecount + 1
+            print(row)
+
+        assignment2 = []
+        # cursor.execute('SELECT * FROM change_log ORDER BY id DESC')
+        cursor.execute(
+            'SELECT * from change_log where change_date >= subtime(current_timestamp(), %s) ORDER BY id DESC',(time,))
+        while True:
+            row = cursor.fetchone()
+            if row is None:
+                break
+            assignment2.append(row)
+            print(row)
+        # User is loggedin show them the home page
+        return render_template('chartdb.html', updatetrack=updatecount, inserttrack=insertcount, deletetrack=deletecount, list=assignment2)
+    if 'loggedin' in session:
+        return render_template('chartinput.html')
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+	
+	
+	
+@app.route('/chartdepartment', methods=['GET', 'POST'])
+def chartdepartment():
+    msg =''
+    if request.method == 'POST' and 'department_id' in request.form:
+        # We need all the account info for the user so we can display it on the profile page
+        department_id = request.form['department_id']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM department WHERE id = %s', (department_id,))
+        account = cursor.fetchone()
+        if account:
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT * from department where id = %s', (department_id,))
+            pulled = cursor.fetchone()
+            dpt = pulled['department_name']
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('select (select sum(time_to_sec(total_time)) FROM (SELECT e.name, e.total_login, a.id, a.task_id,'
+                           ' a.employee_account_id, a.total_time, t.project_id, p.department_id from employee_accounts e join'
+                           ' assigned a on e.id = a.employee_account_id join task t on a.task_id'
+                           ' = t.id join project p on t.project_id = p.id where department_id = %s) q1)',(department_id,))
+            pulled = cursor.fetchone()
+            efficient = float(pulled['(select sum(time_to_sec(total_time)) FROM (SELECT e.name,'
+                                     ' e.total_login, a.id, a.task_id, a.employee_account_id, a.total_time, t.project_id, p.'
+                                     'department_id from employee_accounts e join assigned a on e.id = a.employee_account_id jo'
+                                     'in task t on a.task_id ='])
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+            cursor.execute('select sum(time_to_sec(total_login)) from (SELECT e.name, e.total_login, a.id, a.task_id,'
+                           ' a.employee_account_id, a.total_time, t.project_id, p.department_id from employee_accounts e join'
+                           ' assigned a on e.id = a.employee_account_id join task t on a.task_id = t.id join project p '
+                           'on t.project_id = p.id where department_id = %s) q2',(department_id,))
+            pulled = cursor.fetchone()
+            divisor = float(pulled['sum(time_to_sec(total_login))'])
+            eff = efficient / divisor
+            unused = (divisor-efficient) / divisor
+
+            hours = round((efficient / 3600), 2)
+
+
+            return render_template('chartdepartment.html', efficiency=eff, not_utilized=unused, departmentname=dpt, departmenthours=hours)
+
+        else:
+            msg = 'No department with that ID exists'
+            return render_template('chartinputdepartment.html', msg=msg)
+
+    if 'loggedin' in session:
+        return render_template('chartinputdepartment.html', msg=msg)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+	
+	
+	
+
+@app.route('/chartdepartmentcompare', methods=['GET', 'POST'])
+def chartdepartmentcompare():
+    if 'loggedin' in session:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        assignment2 = []
+        # cursor.execute('SELECT * FROM change_log ORDER BY id DESC')
+        cursor.execute(
+            'SELECT * from department')
+        while True:
+            row = cursor.fetchone()
+            if row is None:
+                break
+            assignment2.append(row)
+            print(row)
+        # User is loggedin show them the home page
+        return render_template('chartdepartmentcompare.html', list=assignment2)
+    else:
+        # User is not loggedin redirect to login page
+        return redirect(url_for('login'))
+		
+		
+		
+@app.route('/chartproject', methods=['GET', 'POST'])
+def chartproject():
+    msg =''
+    if request.method == 'POST' and 'project_id' in request.form:
+        # We need all the account info for the user so we can display it on the profile page
+        project_id = request.form['project_id']
+        department_no = 0
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM project WHERE id = %s', (project_id,))
+        account = cursor.fetchone()
+        if account:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT * from project where id = %s', (project_id,))
+            pulled = cursor.fetchone()
+            planned = pulled['planned_budget']
+            actual = pulled['actual_budget']
+            department = pulled['department_id']
+            print(planned)
+            print(actual)
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT * from department where id = %s', (department,))
+            pulled = cursor.fetchone()
+            dpt = pulled['department_name']
+            print(dpt)
+
+            return render_template('chartproject.html', plannedbudget=planned, actualbudget=actual, departmentname=dpt)
+
+        else:
+            msg = 'No project with that ID exists'
+            return render_template('chartinputproject.html', msg=msg)
+
+    if 'loggedin' in session:
+        return render_template('chartinputproject.html', msg=msg)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
 @app.route('/assignments', methods=['GET', 'POST'])
 def assignments():
     # Check if user is loggedin
@@ -265,8 +452,8 @@ def assignments():
                     mysql.connection.commit()
                     session['clocked_in'] = False
                     msg = 'You have successfully clocked out'
-                    cursor.execute('update assigned SET `total_time` = clock_out - clock_in + `total_time` '
-                                   'WHERE `id` = %s', assigned_id)
+                    cursor.execute('update assigned SET `total_time` = `total_time`+ clock_out - clock_in '
+                                   'WHERE `id` = %s', (assigned_id,))
                     mysql.connection.commit()
                     return render_template('assignments.html', account=account, msg=msg, session=session)
                 else:
@@ -301,7 +488,8 @@ def tasks():
             # Create variables for easy access
             task_id = request.form['task_id']
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT * FROM assigned where task_id = %s', task_id)
+            cursor.execute('select a.id, task_id, employee_account_id, name, clock_in, clock_out, total_time from '
+                           'assigned a join employee_accounts e on a.employee_account_id = e.id where task_id = %s', (task_id,))
             assigned_list = []
             while True:
                 row = cursor.fetchone()
@@ -319,7 +507,8 @@ def tasks():
                 msg = 'Fail!'
                 session['valid_task'] = False
             # Show the profile page with account info
-            return render_template('tasks.html', account=account, list=assigned_list, msg=msg, session=session)
+            return render_template('tasks.html', account=account, list=assigned_list, msg=msg,
+                                   session=session)
         else:
             msg = 'Please enter a valid task id: '
             return render_template('tasks.html', account=account, msg=msg)
@@ -341,15 +530,15 @@ def projects():
             project_id = request.form['project_id']
             # Check if assignment exists using MySQL
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT * FROM task where project_id = %s ', project_id)
+            cursor.execute('SELECT * FROM task where project_id = %s ', (project_id,))
             task_list = []
             while True:
                 row = cursor.fetchone()
                 if row is None:
                     break
                 task_list.append(row)
-                print(row)
-            print()
+#                print(row)
+#            print()
             print(task_list)
             if task_list:
                 msg = 'Success!'
@@ -382,11 +571,13 @@ def insert_account():
     # Check if "username", "password" and "email" POST requests exist (user submitted form)
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Create variables for easy access
+        dept_id = request.form['dept_id']
         name = request.form['name']
         username = request.form['username']
         password = request.form['password']
         is_manager = request.form['is_manager']
         total_session_time = 0
+        total_time = 0
         hourly_wage = request.form['hourly_wage']
         # Check if account exists using MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -405,8 +596,8 @@ def insert_account():
             msg = 'Please fill out the form!'
         else:
             # Account doesnt exists and the form data is valid, now insert new account into accounts table
-            cursor.execute('INSERT INTO employee_accounts VALUES (DEFAULT, %s, %s, %s, %s, DEFAULT , DEFAULT , %s, %s)',
-                           (name, username, password, is_manager, total_session_time, hourly_wage))
+            cursor.execute('INSERT INTO employee_accounts VALUES (DEFAULT, %s, %s, %s, %s, %s, DEFAULT , DEFAULT , %s, %s, %s)',
+                           (dept_id, name, username, password, is_manager, total_session_time, total_time, hourly_wage))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
             return render_template('insert_account.html', msg=msg)
@@ -432,18 +623,21 @@ def insertassigned():
         if account:
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT * FROM task WHERE id = %s', (task_id,))
-            account = cursor.fetchone()
-            if account:
-                cursor.execute('INSERT INTO assigned VALUES (NULL, %s, %s, DEFAULT, DEFAULT, %s)',
-                               (task_id, employee_account_id, total_session_time))
-                mysql.connection.commit()
-
-#                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#                cursor.execute('INSERT INTO change_log VALUES (NULL, %s, %s, DEFAULT, DEFAULT, DEFAULT)', ('INSERTED', 'ASSIGNED'))
-#                mysql.connection.commit()
-
-                msg = 'You have successfully assigned a task!'
-                return render_template('insertassigned.html', msg=msg)
+            task = cursor.fetchone()
+            if task:
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute('SELECT t.id, department_id FROM task t join project p on t.project_id = p.id where '
+                               't.id = %s;', (task_id,))
+                dept_id = cursor.fetchone()
+                if account['dept_id'] is dept_id['department_id']:
+                    cursor.execute('INSERT INTO assigned VALUES (NULL, %s, %s, DEFAULT, DEFAULT, %s)',
+                                   (task_id, employee_account_id, total_session_time))
+                    mysql.connection.commit()
+                    msg = 'You have successfully assigned a task!'
+                    return render_template('insertassigned.html', msg=msg)
+                else:
+                    msg = 'Employee Department Id does not match with Task Department Id'
+                    return render_template('insertassigned.html', msg=msg)
             else:
                 msg = 'No task with that ID exists'
                 return render_template('insertassigned.html', msg=msg)
@@ -464,6 +658,7 @@ def insertproject():
         # Create variables for easy access
         name = request.form['name']
         description = request.form['description']
+        department_id = request.form['department_id']
         start_date = request.form['start_date']
         end_date = request.form['end_date']
         budget = request.form['budget']
@@ -475,8 +670,8 @@ def insertproject():
         elif not description and start_date and end_date:
             msg = 'Please fill out the form!'
         else:
-            cursor.execute('INSERT INTO project VALUES (DEFAULT, %s, %s, %s, %s, %s, DEFAULT, DEFAULT, DEFAULT, DEFAULT)',
-                           (name, description, start_date, end_date, budget))
+            cursor.execute('INSERT INTO project VALUES (DEFAULT, %s, %s, %s, %s, %s, %s, DEFAULT, DEFAULT, DEFAULT, DEFAULT)',
+                           (name, description, department_id, start_date, end_date, budget))
             mysql.connection.commit()
             msg = 'You have successfully made a new project!'
             return render_template('insertproject.html', msg=msg)
@@ -534,6 +729,82 @@ def update():
         return render_template('update.html')
     else:
         return redirect(url_for('login'))
+
+
+@app.route('/updateaccount', methods=['GET', 'POST'])
+def updateaccount():
+    msg = ''
+    msg2 = ''
+    # Check if "username", "password" and "email" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'account_id' in request.form:
+        # Create variables for easy access
+        account_id = request.form['account_id']
+        dept_id = request.form['dept_id']
+        name = request.form['name']
+        username = request.form['username']
+        password = request.form['password']
+        is_manager = request.form['is_manager']
+        hourly_wage = request.form['hourly_wage']
+
+        # Check if account exists using MySQL
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM employee_accounts WHERE id = %s', (account_id,))
+        account = cursor.fetchone()
+        if account:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            if not (is_manager == ""):
+                if re.match(r'[0-1]', is_manager):
+                    print("Manager")
+                    cursor.execute('UPDATE employee_accounts SET is_manager=%s WHERE id=%s', (is_manager, account_id,))
+                    mysql.connection.commit()
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+            if not (username == ""):
+                if re.match(r'[A-Za-z0-9]+', username):
+                    print("Username")
+                    cursor.execute('UPDATE employee_accounts SET username=%s WHERE id=%s', (username, account_id,))
+                    mysql.connection.commit()
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            if not (name == ""):
+                if re.match(r'[A-Za-z0-9]+', name):
+                    print("Name")
+                    cursor.execute('UPDATE employee_accounts SET name=%s WHERE id=%s', (name, account_id,))
+                    mysql.connection.commit()
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            if not (dept_id == ""):
+                if re.match(r'[0-9]', dept_id):
+                    cursor.execute('DELETE FROM assigned WHERE employee_account_id = %s', (account_id,))
+                    mysql.connection.commit()
+                    msg2 = 'All assignments tied to this account have been deleted (Department change). '
+                    print("Department Id")
+                    cursor.execute('UPDATE employee_accounts SET dept_id=%s WHERE id=%s', (dept_id, account_id,))
+                    mysql.connection.commit()
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            if not (password == ""):
+                print("Password")
+                cursor.execute('UPDATE employee_accounts SET password=%s WHERE id=%s', (password, account_id,))
+                mysql.connection.commit()
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            if not (hourly_wage == ""):
+                print("Wages")
+                cursor.execute('UPDATE employee_accounts SET hourly_wage=%s WHERE id=%s', (hourly_wage, account_id,))
+                mysql.connection.commit()
+
+            msg = 'You have successfully updated an account!'
+
+            return render_template('updateaccount.html', msg=msg, msg2=msg2)
+        else:
+            msg = 'No account with that ID exists'
+            return render_template('updateaccount.html', msg=msg)
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+    return render_template('updateaccount.html', msg=msg)
 
 
 @app.route('/updateassigned', methods=['GET', 'POST'])
@@ -694,6 +965,7 @@ def updateproject():
         project_id = request.form['project_id']
         name = request.form['name']
         description = request.form['description']
+        department_id = request.form['department_id']
         start_date = request.form['start_date']
         end_date = request.form['end_date']
         budget = request.form['budget']
@@ -712,10 +984,9 @@ def updateproject():
                 actual_start = request.form['actual_start']
                 if (actual_start == ""):
                     cursor.execute(
-                        'UPDATE project SET project_name=%s, project_description=%s, planned_start_date=%s,'
-                        ' planned_end_date=%s, planned_budget=%s'
-                        ' WHERE id = %s',
-                        (name, description, start_date, end_date, budget, project_id))
+                        'UPDATE project SET project_name=%s, project_description=%s, department_id=%s, planned_start_date=%s,'
+                        ' planned_end_date=%s, planned_budget=%s WHERE id = %s',
+                        (name, description, department_id, start_date, end_date, budget, project_id))
                     mysql.connection.commit()
 #                    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 #                    cursor.execute('INSERT INTO change_log VALUES (NULL, %s, %s, DEFAULT)', ('UPDATED', 'PROJECT'))
@@ -727,10 +998,10 @@ def updateproject():
                     actual_end = request.form['actual_end']
                     if (actual_end == ""):
                         cursor.execute(
-                            'UPDATE project SET project_name=%s, project_description=%s, planned_start_date=%s,'
+                            'UPDATE project SET project_name=%s, project_description=%s, department_id=%s, planned_start_date=%s,'
                             ' planned_end_date=%s, planned_budget=%s, actual_start_date=%s'
                             ' WHERE id = %s',
-                            (name, description, start_date, end_date, budget, actual_start, project_id))
+                            (name, description, department_id, start_date, end_date, budget, actual_start, project_id))
                         mysql.connection.commit()
 #                        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 #                        cursor.execute('INSERT INTO change_log VALUES (NULL, %s, %s, DEFAULT)',
@@ -742,11 +1013,10 @@ def updateproject():
                         actual_budget = request.form['actual_budget']
                         if (actual_budget == ""):
                             cursor.execute(
-                                'UPDATE project SET project_name=%s, project_description=%s, planned_start_date=%s,'
+                                'UPDATE project SET project_name=%s, project_description=%s,, department_id=%s, planned_start_date=%s,'
                                 ' planned_end_date=%s, planned_budget=%s, actual_start_date=%s, actual_end_date'
                                 ' WHERE id = %s',
-                                (
-                                    name, description, start_date, end_date, budget, actual_start, actual_end,
+                                (name, description, department_id, start_date, end_date, budget, actual_start, actual_end,
                                     project_id))
                             mysql.connection.commit()
 #                            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -757,10 +1027,10 @@ def updateproject():
                             return render_template('updateproject.html', msg=msg)
                         else:
                             cursor.execute(
-                                'UPDATE project SET project_name=%s, project_description=%s, planned_start_date=%s,'
+                                'UPDATE project SET project_name=%s, project_description=%s, department_id=%s, planned_start_date=%s,'
                                 ' planned_end_date=%s, planned_budget=%s, actual_start_date=%s, actual_end_date=%s, actual_budget=%s'
                                 ' WHERE id = %s',
-                                (name, description, start_date, end_date, budget, actual_start,
+                                (name, description, department_id, start_date, end_date, budget, actual_start,
                                  actual_end, actual_budget, project_id))
                             mysql.connection.commit()
 #                            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)

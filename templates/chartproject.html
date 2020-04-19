@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}Chart{% endblock %}
+
+{% block content %}
+
+
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+
+        var button = document.getElementById('change-chart');
+        var chartDiv = document.getElementById('chart_div');
+
+        var data = google.visualization.arrayToDataTable([
+          ['Planned vs Actual', 'Planned Budget', 'Actual Budget'],
+          ['Project', {{ plannedbudget }}, {{ actualbudget }}],
+
+
+        ]);
+
+        var materialOptions = {
+          width: 700,
+          chart: {
+            title: 'Project Budget',
+            subtitle: 'Planned Budget vs. Actual Budget'
+          }
+        };
+
+
+
+        function drawMaterialChart() {
+          var materialChart = new google.charts.Bar(chartDiv);
+          materialChart.draw(data, google.charts.Bar.convertOptions(materialOptions));
+
+        }
+
+        drawMaterialChart();
+    };
+    </script>
+  </head>
+  <body>
+    <br><br>
+    <div id="chart_div" style="width: 1000px; height: 500px;"></div>
+  </body>
+</html>
+
+<div>
+
+Department: <td> {{ departmentname }} </td>
+
+</div>
+
+
+
+
+{% endblock %}

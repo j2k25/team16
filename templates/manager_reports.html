@@ -4,29 +4,11 @@
 
 {% block content %}
 <h2>Reports Page</h2>
-    <p>Is Manager: {{ account['is_manager'] }}</p>
 <div>
-    <p>This will be the Projects Report:</p>
-        {% for row in list %}
-            <a href="{{ url_for('projects') }}"><table>
-            <tr>
-                <td> Assigned id: </td>
-                <td> {{ row['id'] }} </td>
-            </tr>
-            </table>
-            <table>
-            <tr>
-                <td> Task id: </td>
-                <td> {{ row['task_id'] }} </td>
-            </tr>
-            </table>
-            <table>
-            <tr>
-                <td> Total time: </td>
-                <td> {{ row['total_time'] }} </td>
-            </tr>
-            </table></a>
-            <p></p>
-        {% endfor %}
+    <p>Manager Reports:</p>
+</p><a href="{{ url_for('chartdb') }}">Change Log Report</a></p>
+</p><a href="{{ url_for('chartproject') }}">Project Budget Report</a></p>
+</p><a href="{{ url_for('chartdepartment') }}">Department Report</a></p>
+</p><a href="{{ url_for('chartdepartmentcompare') }}">Department Efficiency Comparison Report</a></p>
 </div>
 {% endblock %}

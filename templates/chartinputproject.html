@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<h2>Database Interactions</h2>
+
+<p>
+
+
+<div class="chartproject">
+
+			<form action="{{ url_for('chartproject') }}" method="post" autocomplete="off">
+				<label for="timeframe">
+					<i class="fas fa-user"></i>
+				</label>
+<input type="number" name="project_id" placeholder="Project ID" id="project_id" required>
+    <p></p>
+
+
+				<div class="msg">{{ msg }}</div>
+				<input type="submit" value="Project Budget Report">
+			</form>
+		</div>
+{% endblock %}
