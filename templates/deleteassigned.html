@@ -3,7 +3,7 @@
 {% block title %}Delete{% endblock %}
 
 {% block content %}
-<h2>Delete an Assignment</h2>
+<h2>Delete an Assignment <i class="fas fa-tag"></i></h2>
 
 <p>
     <a href="{{ url_for('delete') }}">Go Back</a></p>
@@ -13,13 +13,13 @@
 
 			<form action="{{ url_for('deleteassigned') }}" method="post" autocomplete="off">
 				<label for="assign_id">
-					<i class="fas fa-cogs"></i>
+<i class="fas fa-tag"></i>
 				</label>
 <input type="number" name="assign_id" placeholder="Assignment ID" id="assign_id" required>
 
 
 				<div class="msg">{{ msg }}</div>
-				</p><input type="submit" value="deleteassigned">
+				</p><input type="submit" value="Delete Assigned">
 			</form>
 		</div>
 {% endblock %}

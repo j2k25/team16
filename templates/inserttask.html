@@ -3,7 +3,7 @@
 {% block title %}Insert{% endblock %}
 
 {% block content %}
-<h2>Insert a New Task to a Project</h2>
+<h2>Insert a New Task <i class="fas fa-hammer"></i> to a Project <i class="fas fa-cogs"></i> </h2>
 
 <p>
     <a href="{{ url_for('insert') }}">Go Back</a></p>
@@ -22,13 +22,13 @@
 <p></p>
 
 <label for="name">
-					<i class="fas fa-cogs"></i>
+<i class="fas fa-hammer"></i>
 				</label>
 <input type="text" name="name" placeholder="Name" id="name" required>
 
 <label for="description">
 
-					<i class="fas fa-cogs"></i>
+<i class="fas fa-hammer"></i>
 				</label>
 				
 				<input type="text" name="description" placeholder="Description" id="description" required>

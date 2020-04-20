@@ -3,7 +3,7 @@
 {% block title %}Insert{% endblock %}
 
 {% block content %}
-<h2>Insert a New Project</h2>
+<h2>Insert a New Project   <i class="fas fa-cogs"></i></h2>
 
 <p>
     <a href="{{ url_for('insert') }}">Go Back</a></p>
@@ -13,13 +13,13 @@
 
 			<form action="{{ url_for('insertproject') }}" method="post" autocomplete="off">
 				<label for="name">
-					<i class="fas fa-user"></i>
+					<i class="fas fa-cogs"></i>
 				</label>
 
 				<input type="text" name="name" placeholder="Name" id="name" required>
 				<p></p>
 				<label for="description">
-				<i class="fas fa-user"></i>
+				<i class="fas fa-cogs"></i>
 				</label>
 				
 				<input type="text" name="description" placeholder="Description" id="description" required>

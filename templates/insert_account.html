@@ -3,7 +3,7 @@
 {% block title %}Insert{% endblock %}
 
 {% block content %}
-<h2>Insert Into Account</h2>
+<h2>Insert a New Account  <i class="fas fa-user"></i></h2>
 
 <p>
     <a href="{{ url_for('insert') }}">Go Back</a>
@@ -12,7 +12,7 @@
 <div class="insert_account">
 
 			<form action="{{ url_for('insert_account') }}" method="post" autocomplete="off">
-                <label for="dept_id"> <i class="fas fa-angry"></i></label>
+                <label for="dept_id"> <i class="fas fa-address-card"></i></label>
                 <input type="number" name="dept_id" placeholder="Department Id" id="dept_id" required>
                 <p></p>
 
