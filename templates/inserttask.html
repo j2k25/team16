@@ -13,39 +13,40 @@
 
 			<form action="{{ url_for('inserttask') }}" method="post" autocomplete="off">
 				<label for="project_id">
-					<i class="fas fa-user"></i>
+					<i class="fas fa-cogs"></i>
 				</label>
 
 <input type="number" name="project_id" placeholder="Project ID" id="project_id" required>
 <label for="description">
 
+<p></p>
 
 <label for="name">
-					<i class="fas fa-user"></i>
+					<i class="fas fa-cogs"></i>
 				</label>
 <input type="text" name="name" placeholder="Name" id="name" required>
-<p></p>
+
 <label for="description">
 
-					<i class="fas fa-user"></i>
+					<i class="fas fa-cogs"></i>
 				</label>
 				
 				<input type="text" name="description" placeholder="Description" id="description" required>
 				<p></p>
-<p>Enter the Planned Start Date and the Planned End Date</p>
+                <p>Enter the Planned Start Date and the Planned End Date</p>
 				<label for="start_date">
-					<i class="fas fa-envelope"></i>
-				</label>
+                <i class="fas fa-calendar-alt"></i>
+                </label>
 
 				<input type="date" name="start_date" placeholder="Planned Start Date" id="start_date" required>
 				<label for="end_date">
-					<i class="fas fa-envelope"></i>
+					<i class="fas fa-calendar-alt"></i>
 				</label>
 				<input type="date" name="end_date" placeholder="Planned End Date" id="end_date" required>
 
 				<p></p>
 				<label for="budget">
-					<i class="fas fa-envelope"></i>
+					<i class="fas fa-donate"></i>
 				</label>
 				<input type="number" name="budget" placeholder="Budget" id="budget" required>
 

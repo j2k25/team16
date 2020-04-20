@@ -12,8 +12,9 @@
 <div class="insert_account">
 
 			<form action="{{ url_for('insert_account') }}" method="post" autocomplete="off">
-                <label for="dept_id"> <i class="fas fa-user"></i> </label>
+                <label for="dept_id"> <i class="fas fa-angry"></i></label>
                 <input type="number" name="dept_id" placeholder="Department Id" id="dept_id" required>
+                <p></p>
 
 				<label for="name"> <i class="fas fa-user"></i> </label>
                 <input type="text" name="name" placeholder="Name" id="name" required>
@@ -27,13 +28,13 @@
                 <p></p>
 
 				<label for="is_manager">
-					<i class="fas fa-envelope"></i>
+                <i class="fas fa-crown"></i>
 				</label>
 				<input type="number" name="is_manager" placeholder="0 Employee, 1 Manager" id="is_manager" required>
 
                 <label for="hourly_wage">
-					<i class="fas fa-envelope"></i>
-				</label>
+                <i class="fas fa-donate"></i>
+                </label>
 				<input type="number" name="hourly_wage" placeholder="Hourly Wage" id="hourly_wage" required step=".01">
 
 				<div class="msg">{{ msg }}</div>
