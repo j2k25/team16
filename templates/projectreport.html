@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Chart{% endblock %}
+
+{% block content %}
+
+    <h2>Project Warnings Report</h2>
+    <p> <a href="{{ url_for('projectreport') }}">Project Warnings Report</a> </p>
+
+<div class="projectreport">
+
+    <div>
+			<form action="{{ url_for('projectreport') }}" method="post" autocomplete="off">
+				<label for="project_id"> <i class="fas fa-user"></i> </label>
+                <input type="number" name="warning_id" placeholder="Warning ID" id="warning_id" required>
+
+				<div class="msg">{{ msg }}</div>
+                <p></p>
+                <p>	<input type="submit" value="Delete a Warning"> </p>
+			</form>
+	</div>
+
+
+<div>
+    {% for row in list %}
+        <table>
+            <tr>
+                <td>ID :  {{ row['id'] }} </td>
+                <td> {{ row['warning_type'] }} </td>
+            </tr>
+        </table>
+    {% endfor %}
+</div>
+
+{% endblock %}

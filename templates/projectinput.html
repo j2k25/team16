@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %}Reports{% endblock %}
+
+{% block content %}
+<h2>Project Warnings Report</h2>
+    <p> <a href="{{ url_for('reports') }}">Go Back</a> </p>
+
+<div class="projectreport">
+
+			<form action="{{ url_for('projectreport') }}" method="post" autocomplete="off">
+				<label for="project_id"> <i class="fas fa-user"></i> </label>
+                <input type="number" name="project_id" placeholder="Project ID" id="project_id" required>
+
+				<div class="msg">{{ msg }}</div>
+                <p></p>
+				<p> <input type="submit" value="Project Warnings Report"> </p>
+			</form>
+		</div>
+{% endblock %}
