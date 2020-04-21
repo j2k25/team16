@@ -3,8 +3,6 @@ import re
 import MySQLdb
 import MySQLdb.cursors
 import mysql.connector
-from beautifultable import BeautifulTable
-import numpy
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 from mysql.connector import MySQLConnection
