@@ -24,8 +24,20 @@
             <td>{{ account['password'] }}</td>
         </tr>
         <tr>
+            <td>Department Id:</td>
+            <td>{{ account['dept_id'] }}</td>
+        </tr>
+        <tr>
+            <td>Department Name:</td>
+            <td>{{ session['department_name'] }}</td>
+        </tr>
+        <tr>
             <td>Is Manager:</td>
-            <td>{{ account['is_manager'] }}</td>
+            {% if account['is_manager'] %}
+                <td> Yes </td>
+                {% else %}
+                    <td> No </td>
+            {% endif %}
         </tr>
         <tr>
             <td>Last Logged In Session:</td>
@@ -36,8 +48,16 @@
             <td>{{ account['log_out'] }}</td>
         </tr>
         <tr>
-            <td>Total Session Time Logged:</td>
+            <td>Last Session Time Logged:</td>
             <td>{{ account['total_session_time'] }}</td>
+        </tr>
+        <tr>
+            <td>Total Login:</td>
+            <td>{{ account['total_login'] }}</td>
+        </tr>
+        <tr>
+            <td>Hourly Wage:</td>
+            <td>${{ account['hourly_wage'] }}</td>
         </tr>
     </table>
 </div>
