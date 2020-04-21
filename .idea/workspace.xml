@@ -3,22 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62c7f877-21b3-4c45-8ea1-b1abb180c5e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartinput.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartinput.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartinputdepartment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartinputdepartment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartinputproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartinputproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deleteaccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deleteaccount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deleteassigned.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deleteassigned.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deleteproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deleteproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deletetask.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deletetask.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/insert_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insert_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/insertassigned.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insertassigned.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/insertproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insertproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inserttask.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inserttask.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/updateaccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updateaccount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/updateassigned.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updateassigned.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/updateproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updateproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/updatetask.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updatetask.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +101,7 @@
       <workItem from="1587161800517" duration="1706000" />
       <workItem from="1587167328242" duration="580000" />
       <workItem from="1587236834453" duration="1757000" />
-      <workItem from="1587324065620" duration="17141000" />
+      <workItem from="1587324065620" duration="17843000" />
     </task>
     <servers />
   </component>
@@ -136,22 +120,22 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="315" y="119" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1586383332112" />
-    <state width="1281" height="107" key="GridCell.Tab.0.bottom" timestamp="1587349136595">
+    <state width="1281" height="107" key="GridCell.Tab.0.bottom" timestamp="1587350118775">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="107" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1587349136595" />
-    <state width="1281" height="107" key="GridCell.Tab.0.center" timestamp="1587349136595">
+    <state width="1281" height="107" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1587350118775" />
+    <state width="1281" height="107" key="GridCell.Tab.0.center" timestamp="1587350118775">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="107" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1587349136595" />
-    <state width="1281" height="107" key="GridCell.Tab.0.left" timestamp="1587349136595">
+    <state width="1281" height="107" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1587350118775" />
+    <state width="1281" height="107" key="GridCell.Tab.0.left" timestamp="1587350118760">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="107" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1587349136595" />
-    <state width="1281" height="107" key="GridCell.Tab.0.right" timestamp="1587349136595">
+    <state width="1281" height="107" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1587350118760" />
+    <state width="1281" height="107" key="GridCell.Tab.0.right" timestamp="1587350118775">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="107" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1587349136595" />
+    <state width="1281" height="107" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1587350118775" />
     <state x="150" y="3" key="SettingsEditor" timestamp="1586558240201">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

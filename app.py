@@ -3,8 +3,8 @@ import re
 import MySQLdb
 import MySQLdb.cursors
 import mysql.connector
-# from beautifultable import BeautifulTable
-# import numpy
+from beautifultable import BeautifulTable
+import numpy
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 from mysql.connector import MySQLConnection
@@ -35,7 +35,9 @@ def login():
         password = request.form['password']
         # Check if account exists using MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM employee_accounts WHERE username = %s AND password = %s', (username, password,))
+        cursor.execute('SELECT e.id, department_name, dept_id, name, username, password, is_manager, log_in, log_out, '
+                       'total_session_time, total_login, hourly_wage FROM employee_accounts e join department d '
+                       'on e.dept_id = d.id WHERE username = %s AND password = %s', (username, password,))
         # Fetch one record and return result
         account = cursor.fetchone()
         print(account)
@@ -47,6 +49,8 @@ def login():
             session['name'] = account['name']
             session['username'] = account['username']
             session['password'] = account['password']
+            session['dept_id'] = account['dept_id']
+            session['department_name'] = account['department_name']
             session['is_manager'] = account['is_manager']
             session['clocked_in'] = False
             cursor.execute('update employee_accounts SET `log_in` = current_timestamp() WHERE  id = %s', (session['id'],))
@@ -83,14 +87,19 @@ def logout():
                        '`employee_account_id` = %s', (session['ass_id'], session['id'],))
         mysql.connection.commit()
         session['clocked_in'] = False
+# select addtime(current_time(), sec_to_time(timestampdiff(second, '2020-04-20 19:52:28', '2020-04-20 19:52:41')));
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('update employee_accounts SET `log_out` = current_timestamp() WHERE  id = %s', (session['id'],))
     mysql.connection.commit()
-    cursor.execute('update employee_accounts set `total_session_time` = `log_out` - `log_in` where id = %s',
-                   (session['id'],))
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('update employee_accounts set `total_session_time` = sec_to_time(timestampdiff(second, `log_in`,`log_out`)) '
+                   'where id = %s', (session['id'],))
     mysql.connection.commit()
-    cursor.execute('update employee_accounts set `total_login` = `total_login` + `total_session_time` where id = %s',
-                   (session['id'],))
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('update employee_accounts set `total_login` = addtime(`total_login`,`total_session_time`) '
+                   'where id = %s', (session['id'],))
     mysql.connection.commit()
     # Remove session data, this will log the user out
     session.pop('loggedin', None)
@@ -306,9 +315,45 @@ def chartdb():
         return render_template('chartinput.html')
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
-	
-	
-	
+
+
+@app.route('/chartproject', methods=['GET', 'POST'])
+def chartproject():
+    msg =''
+    if request.method == 'POST' and 'project_id' in request.form:
+        # We need all the account info for the user so we can display it on the profile page
+        project_id = request.form['project_id']
+        department_no = 0
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM project WHERE id = %s', (project_id,))
+        account = cursor.fetchone()
+        if account:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT * from project where id = %s', (project_id,))
+            pulled = cursor.fetchone()
+            planned = pulled['planned_budget']
+            actual = pulled['actual_budget']
+            department = pulled['department_id']
+            print(planned)
+            print(actual)
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT * from department where id = %s', (department,))
+            pulled = cursor.fetchone()
+            dpt = pulled['department_name']
+            print(dpt)
+
+            return render_template('chartproject.html', plannedbudget=planned, actualbudget=actual, departmentname=dpt)
+
+        else:
+            msg = 'No project with that ID exists'
+            return render_template('chartinputproject.html', msg=msg)
+
+    if 'loggedin' in session:
+        return render_template('chartinputproject.html', msg=msg)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+
 @app.route('/chartdepartment', methods=['GET', 'POST'])
 def chartdepartment():
     msg =''
@@ -360,9 +405,7 @@ def chartdepartment():
         return render_template('chartinputdepartment.html', msg=msg)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
-	
-	
-	
+
 
 @app.route('/chartdepartmentcompare', methods=['GET', 'POST'])
 def chartdepartmentcompare():
@@ -383,42 +426,54 @@ def chartdepartmentcompare():
     else:
         # User is not loggedin redirect to login page
         return redirect(url_for('login'))
-		
-		
-		
-@app.route('/chartproject', methods=['GET', 'POST'])
-def chartproject():
+
+
+@app.route('/projectreport', methods=['GET', 'POST'])
+def projectreport():
     msg =''
     if request.method == 'POST' and 'project_id' in request.form:
         # We need all the account info for the user so we can display it on the profile page
         project_id = request.form['project_id']
-        department_no = 0
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM project WHERE id = %s', (project_id,))
         account = cursor.fetchone()
         if account:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT * from project where id = %s', (project_id,))
-            pulled = cursor.fetchone()
-            planned = pulled['planned_budget']
-            actual = pulled['actual_budget']
-            department = pulled['department_id']
-            print(planned)
-            print(actual)
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT * from department where id = %s', (department,))
-            pulled = cursor.fetchone()
-            dpt = pulled['department_name']
-            print(dpt)
 
-            return render_template('chartproject.html', plannedbudget=planned, actualbudget=actual, departmentname=dpt)
+            assignment2 = []
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT * from warnings_on_projects where project_id = %s', (project_id,))
+            while True:
+                row = cursor.fetchone()
+                if row is None:
+                    break
+                assignment2.append(row)
+                print(row)
 
+            return render_template('projectreport.html', list=assignment2)
         else:
             msg = 'No project with that ID exists'
-            return render_template('chartinputproject.html', msg=msg)
+            return render_template('projectinput.html', msg=msg)
 
+    if request.method == 'POST' and 'warning_id' in request.form:
+        # We need all the account info for the user so we can display it on the profile page
+        warning_id = request.form['warning_id']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM warnings_on_projects WHERE id = %s', (warning_id,))
+        account = cursor.fetchone()
+        if account:
+
+            deletestate = "DELETE FROM warnings_on_projects WHERE id = %s"
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute(deletestate, (warning_id,))
+            mysql.connection.commit()
+
+            msg = 'You have successfully deleted a warning!'
+            return render_template('projectreport.html', msg=msg)
+        else:
+            msg = 'No project with that ID exists'
+            return render_template('projectinput.html', msg=msg)
     if 'loggedin' in session:
-        return render_template('chartinputproject.html', msg=msg)
+        return render_template('projectinput.html', msg=msg)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
@@ -452,8 +507,10 @@ def assignments():
                     mysql.connection.commit()
                     session['clocked_in'] = False
                     msg = 'You have successfully clocked out'
-                    cursor.execute('update assigned SET `total_time` = `total_time`+ clock_out - clock_in '
-                                   'WHERE `id` = %s', (assigned_id,))
+# select addtime(current_time(), sec_to_time(timestampdiff(second, '2020-04-20 19:52:28', '2020-04-20 19:52:41')));
+                    cursor.execute('update assigned SET `total_time` = addtime(`total_time`, '
+                                   'sec_to_time(timestampdiff(second, `clock_in`, `clock_out`))) WHERE `id` = %s',
+                                   (assigned_id,))
                     mysql.connection.commit()
                     return render_template('assignments.html', account=account, msg=msg, session=session)
                 else:
