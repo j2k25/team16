@@ -6,9 +6,12 @@
 <h2>Reports Page</h2>
 <div>
     <p>Manager Reports:</p>
-</p><a href="{{ url_for('chartdb') }}">Change Log Report</a></p>
-</p><a href="{{ url_for('chartproject') }}">Project Budget Report</a></p>
-</p><a href="{{ url_for('chartdepartment') }}">Department Report</a></p>
-</p><a href="{{ url_for('chartdepartmentcompare') }}">Department Efficiency Comparison Report</a></p>
+<table>
+    <p> <a href="{{ url_for('projectreport') }}">Project Warnings Report</a> </p>
+    <p> <a href="{{ url_for('chartproject') }}">Project Budget Report</a> </p>
+    <p> <a href="{{ url_for('chartdepartment') }}">Department Efficiency Report</a> </p>
+    <p> <a href="{{ url_for('chartdepartmentcompare') }}">Company Efficiency Report</a> </p>
+    <p> <a href="{{ url_for('chartdb') }}">Change Log Report</a> </p>
+    </table>
 </div>
 {% endblock %}
