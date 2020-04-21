@@ -155,7 +155,9 @@ def manager_home():
         cursor.execute('SELECT * FROM employee_accounts WHERE id = %s', (session['id'],))
         account = cursor.fetchone()
         project_list = []
-        cursor.execute('SELECT * FROM project')
+        cursor.execute('SELECT p.id, project_name, project_description, department_id, department_name, '
+                       'planned_start_date, planned_end_date, planned_budget, actual_start_date, actual_end_date, '
+                       'actual_budget, status_on_tasks FROM project p join department d on p.department_id = d.id')
         while True:
             row = cursor.fetchone()
             if row is None:
@@ -543,7 +545,7 @@ def tasks():
             # Create variables for easy access
             task_id = request.form['task_id']
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('select a.id, task_id, employee_account_id, name, clock_in, clock_out, total_time from '
+            cursor.execute('select a.id, task_id, employee_account_id, name, clock_in, clock_out, total_time, hourly_wage from '
                            'assigned a join employee_accounts e on a.employee_account_id = e.id where task_id = %s', (task_id,))
             assigned_list = []
             while True:

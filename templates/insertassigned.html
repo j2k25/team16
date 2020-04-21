@@ -5,25 +5,21 @@
 {% block content %}
 <h2>Insert a New Assignment  <i class="fas fa-tag"></i></h2>
 
-<p>
-    <a href="{{ url_for('insert') }}">Go Back</a></p>
+    <p> <a href="{{ url_for('insert') }}">Go Back</a> </p>
 
 
 <div class="insertassigned">
 
 			<form action="{{ url_for('insertassigned') }}" method="post" autocomplete="off">
-				<label for="employee_account_id">
-					<i class="fas fa-user"></i>
-				</label>
-<input type="number" name="employee_account_id" placeholder="Employee Account ID" id="employee_account_id" required>
-			
-				<label for="task_id">
-                    <i class="fas fa-hammer"></i>
-                </label>
+				<label for="employee_account_id"> <i class="fas fa-user"></i> </label>
+				<input type="number" name="employee_account_id" placeholder="Employee Account ID" id="employee_account_id" required>
+
+				<label for="task_id"> <i class="fas fa-hammer"></i> </label>
 				<input type="number" name="task_id" placeholder="Task ID" id="task_id" required>
 
 				<div class="msg">{{ msg }}</div>
-				</p><input type="submit" value="Insert Assigned">
+				<p></p>
+                <input type="submit" value="Insert Assigned">
 			</form>
 		</div>
 {% endblock %}

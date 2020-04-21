@@ -5,9 +5,9 @@
 {% block content %}
 <h2>Employee Home Page</h2>
     <div>
-    <p>Welcome back!  {{ account['name'] }}</p>
+    <p>Welcome back, {{ session['name'] }}!</p>
     <p>Your current assignments:</p>
-    (<a href="{{ url_for('assignments') }}">Clock In / Out</a>)
+    <a href="{{ url_for('assignments') }}">Clock In / Out</a>
     {% for row in list %}
             <table>
                 <tr>

@@ -5,25 +5,19 @@
 {% block content %}
 <h2>Update Assigned  <i class="fas fa-tag"></i></h2>
 
-<p>
-    <a href="{{ url_for('update') }}">Go Back</a></p>
+<div><a href="{{ url_for('update') }}">Go Back</a></div>
 
 
 <div class="updateassigned">
 
 			<form action="{{ url_for('updateassigned') }}" method="post" autocomplete="off">
-<label for="assign_id">
-					<i class="fas fa-tag"></i>
-				</label>
-<input type="number" name="assign_id" placeholder="Assignment ID" id="assign_id" required>
-				<label for="employee_account_id">
-					<i class="fas fa-user"></i>
-				</label>
-<input type="number" name="employee_account_id" placeholder="Employee Account ID">
-			
-				<label for="task_id">
-                    <i class="fas fa-hammer"></i>
-				</label>
+				<label for="assign_id"> <i class="fas fa-tag"></i> </label>
+				<input type="number" name="assign_id" placeholder="Assignment ID" id="assign_id" required>
+
+				<label for="employee_account_id"> <i class="fas fa-user"></i> </label>
+				<input type="number" name="employee_account_id" placeholder="Employee Account ID">
+
+				<label for="task_id"> <i class="fas fa-hammer"></i> </label>
 				<input type="number" name="task_id" placeholder="Task ID">
 
 				<div class="msg">{{ msg }}</div>

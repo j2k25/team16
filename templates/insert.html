@@ -5,19 +5,14 @@
 {% block content %}
 <h2>Insert Page</h2>
 <p>What would you like to insert into?</p>
-<p>
-    <a href="{{ url_for('insert_account') }}">Account</a>
-</p>
-<p>
-    <a href="{{ url_for('inserttask') }}">Create a Task for a Project</a>
-</p>
-<p>
-    <a href="{{ url_for('insertassigned') }}">Assign Tasks to Employee</a>
-</p>
-<p>
-    <a href="{{ url_for('insertproject') }}">Create a New Project</a>
-</p>
+<p> <a href="{{ url_for('insert_account') }}">Account</a> </p>
 
+<p> <a href="{{ url_for('insertassigned') }}">Assign Tasks to Employee</a> </p>
 
+<p> <a href="{{ url_for('inserttask') }}">Create a Task for a Project</a> </p>
+
+<p> <a href="{{ url_for('insertproject') }}">Create a New Project</a> </p>
+
+<p> <a href="{{ url_for('home') }}">Go Back</a> </p>
 
 {% endblock %}

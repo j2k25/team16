@@ -5,75 +5,50 @@
 {% block content %}
 <h2>Update a Task <i class="fas fa-hammer"></i> to a Project  <i class="fas fa-cogs"></i></h2>
 
-<p>
-    <a href="{{ url_for('update') }}">Go Back</a></p>
+<div><a href="{{ url_for('update') }}">Go Back</a></div>
 
 
 <div class="updatetask">
 
 			<form action="{{ url_for('updatetask') }}" method="post" autocomplete="off">
-				<label for="project_id">
-<i class="fas fa-hammer"></i>
-				</label>
+				<label for="task_id"> <i class="fas fa-hammer"></i> </label>
+				<input type="number" name="task_id" placeholder="Task ID" id="task_id" required>
 
-<input type="number" name="task_id" placeholder="Task ID" id="task_id" required>
-<label for="project_id">
-<i class="fas fa-cogs"></i>
-				</label>
-
-<input type="number" name="project_id" placeholder="Project ID" id="project_id" required>
-<label for="description">
-
+				<label for="project_id"> <i class="fas fa-cogs"></i> </label>
+				<input type="number" name="project_id" placeholder="Project ID" id="project_id" required>
 <p></p>
-<label for="name">
-<i class="fas fa-hammer"></i>
-				</label>
-<input type="text" name="name" placeholder="Name" id="name" required>
+				<label for="name"> <i class="fas fa-hammer"></i> </label>
+				<input type="text" name="name" placeholder="Name" id="name" required>
 
-<label for="description">
-
-					<i class="fas fa-hammer"></i>
-
-				</label>
+				<label for="description"> <i class="fas fa-hammer"></i> </label>
 				<input type="text" name="description" placeholder="Description" id="description" required>
-				<p></p>
+<p></p>
 
 <p>Enter the Planned Start Date and the Planned End Date</p>
-				<label for="start_date">
-                    <i class="fas fa-calendar-alt"></i>
-                </label>
-
+				<label for="start_date"> <i class="fas fa-calendar-alt"></i> </label>
 				<input type="date" name="start_date" placeholder="Planned Start Date" id="start_date" required>
-				<label for="end_date">
-                    <i class="fas fa-calendar-alt"></i>
-                </label>
+
+				<label for="end_date"> <i class="fas fa-calendar-alt"></i> </label>
 				<input type="date" name="end_date" placeholder="Planned End Date" id="end_date" required>
 <p></p>
-				<label for="budget">
-                    <i class="fas fa-donate"></i>
-				</label>
+				<label for="budget"> <i class="fas fa-donate"></i> </label>
 				<input type="number" name="budget" placeholder="Planned Budget" id="budget" required>
 <p></p>
 
 <p>If applicable, type in the actual start date and end date</p>
-<label for="actual_start">
-					<i class="fas fa-calendar-alt"></i>
-				</label>
+				<label for="actual_start"> <i class="fas fa-calendar-alt"></i> </label>
 				<input type="date" name="actual_start" placeholder="Actual Start Date">
-<label for="budget">
-					<i class="fas fa-calendar-alt"></i>
-				</label>
 
+				<label for="actual_end"> <i class="fas fa-calendar-alt"></i> </label>
 				<input type="date" name="actual_end" placeholder="Actual End Date">
 
                         <p></p>
-
-                    <i class="fas fa-donate"></i>
-				</label>
+				<label for="budget"> <i class="fas fa-donate"></i> </label>
 				<input type="number" name="actual_budget" placeholder="Actual Budget">
 
 				<div class="msg">{{ msg }}</div>
-				</p><input type="submit" value="Update Task">
+				<p></p>
+				<input type="submit" value="Update Task">
 			</form>
 		</div>
 {% endblock %}
