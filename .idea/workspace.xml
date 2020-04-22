@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62c7f877-21b3-4c45-8ea1-b1abb180c5e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/assignments.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/assignments.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/insertproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insertproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inserttask.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inserttask.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/projectreport.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/projectreport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tasks.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tasks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/updateproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updateproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/updatetask.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updatetask.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +104,7 @@
       <workItem from="1587324065620" duration="17843000" />
       <workItem from="1587436232167" duration="2937000" />
       <workItem from="1587516631475" duration="7710000" />
-      <workItem from="1587592016121" duration="218000" />
+      <workItem from="1587592016121" duration="556000" />
     </task>
     <servers />
   </component>
