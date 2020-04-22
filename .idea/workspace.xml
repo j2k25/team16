@@ -2,34 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62c7f877-21b3-4c45-8ea1-b1abb180c5e5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartdb.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartdb.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartdepartment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartdepartment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartdepartmentcompare.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartdepartmentcompare.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartinput.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartinput.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartinputdepartment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartinputdepartment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartinputproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartinputproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/chartproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chartproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deleteaccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deleteaccount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deleteassigned.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deleteassigned.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deleteproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deleteproject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deletetask.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deletetask.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employee_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employee_home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employee_reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employee_reports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/insert.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insert.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/insert_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insert_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/insertassigned.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insertassigned.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/assignments.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/assignments.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/insertproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insertproject.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/inserttask.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inserttask.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/manager_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/manager_home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/projectinput.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/projectinput.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/projectreport.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/projectreport.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tasks.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tasks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/updateaccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updateaccount.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/updateassigned.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updateassigned.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/updateproject.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updateproject.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/updatetask.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/updatetask.html" afterDir="false" />
     </list>
@@ -131,7 +111,9 @@
       <workItem from="1587167328242" duration="580000" />
       <workItem from="1587236834453" duration="1757000" />
       <workItem from="1587324065620" duration="17843000" />
-      <workItem from="1587436232167" duration="2332000" />
+      <workItem from="1587436232167" duration="2937000" />
+      <workItem from="1587516631475" duration="7710000" />
+      <workItem from="1587592016121" duration="218000" />
     </task>
     <servers />
   </component>
@@ -150,33 +132,33 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="315" y="119" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1586383332112" />
-    <state width="1281" height="196" key="GridCell.Tab.0.bottom" timestamp="1587441585368">
+    <state width="1281" height="116" key="GridCell.Tab.0.bottom" timestamp="1587592184447">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="196" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1587441585368" />
-    <state width="1281" height="196" key="GridCell.Tab.0.center" timestamp="1587441585367">
+    <state width="1281" height="116" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1587592184447" />
+    <state width="1281" height="116" key="GridCell.Tab.0.center" timestamp="1587592184446">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="196" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1587441585367" />
-    <state width="1281" height="196" key="GridCell.Tab.0.left" timestamp="1587441585366">
+    <state width="1281" height="116" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1587592184446" />
+    <state width="1281" height="116" key="GridCell.Tab.0.left" timestamp="1587592184446">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="196" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1587441585366" />
-    <state width="1281" height="196" key="GridCell.Tab.0.right" timestamp="1587441585367">
+    <state width="1281" height="116" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1587592184446" />
+    <state width="1281" height="116" key="GridCell.Tab.0.right" timestamp="1587592184447">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="196" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1587441585367" />
+    <state width="1281" height="116" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1587592184447" />
     <state x="150" y="3" key="SettingsEditor" timestamp="1586558240201">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="150" y="3" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1586558240201" />
-    <state x="354" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1587436231117">
+    <state x="354" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1587592017263">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="354" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1587436231117" />
+    <state x="354" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1587592017263" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dbtest$dbtest.coverage" NAME="dbtest Coverage Results" MODIFIED="1587161854644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/dbtest$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1587441585320" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/dbtest$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1587592184379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

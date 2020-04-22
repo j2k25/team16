@@ -17,30 +17,30 @@
 <p></p>
 
 				<label for="name"> <i class="fas fa-cogs"></i> </label>
-				<input type="text" name="name" placeholder="Name" id="name" required>
+				<input type="text" name="name" placeholder="Name" id="name">
 
 				<label for="description"> <i class="fas fa-cogs"></i> </label>
-				<input type="text" name="description" placeholder="Description" id="description" required>
+				<input type="text" name="description" placeholder="Description" id="description">
 <p></p>
 <p>Enter the Planned Start Date and the Planned End Date</p>
 				<label for="start_date"> <i class="fas fa-calendar-alt"></i> </label>
-				<input type="date" name="start_date" placeholder="Planned Start Date" id="start_date" required>
+				<input type="date" name="start_date" placeholder="Planned Start Date" id="start_date">
 
 				<label for="end_date"> <i class="fas fa-calendar-alt"></i> </label>
-				<input type="date" name="end_date" placeholder="Planned End Date" id="end_date" required>
+				<input type="date" name="end_date" placeholder="Planned End Date" id="end_date">
 <p></p>
 				<label for="budget"> <i class="fas fa-donate"></i> </label>
-				<input type="number" name="budget" placeholder="Planned Budget" id="budget" required>
+				<input type="number" name="budget" placeholder="Planned Budget" step=".01" id="budget">
 
 <p>If applicable, type in the actual start date and end date</p>
 				<label for="actual_start"> <i class="fas fa-calendar-alt"></i> </label>
-				<input type="date" name="actual_start" placeholder="Actual Start Date">
+				<input type="date" name="actual_start" placeholder="Actual Start Date" id="actual_start">
 
 				<label for="actual_end"> <i class="fas fa-calendar-alt"></i> </label>
-				<input type="date" name="actual_end" placeholder="Actual End Date">
+				<input type="date" name="actual_end" placeholder="Actual End Date" id="actual_end">
 <p></p>
                 <label for="budget"> <i class="fas fa-donate"></i> </label>
-				<input type="number" name="actual_budget" placeholder="Actual Budget">
+				<input type="number" name="actual_budget" placeholder="Actual Budget" step=".01" id="actual_budget">
 
 
 				<div class="msg">{{ msg }}</div>

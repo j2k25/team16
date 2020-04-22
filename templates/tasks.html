@@ -8,7 +8,7 @@
     <p>{{ msg }}</p>
     <form action="{{ url_for('tasks') }}" method="post">
 				<label for="task_id"> </label>
-				<input type="text" name="task_id" placeholder="Task Id" id="task_id" required>
+				<input type="number" name="task_id" placeholder="Task Id" id="task_id" required>
 				<input type="submit" value="View Task Assignments">
     </form>
     <p></p>

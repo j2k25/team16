@@ -3,7 +3,7 @@
 	<style>
 		body {
 			background-image: url("https://cdn.discordapp.com/attachments/686725671246233626/695754083021226044/screen.jpg");
-			background-size: 100% cover;
+			background-size: 100%;
 		}
     </style>
 
@@ -20,14 +20,12 @@
 				<a href="{{ url_for('login') }}" class="active">Login</a>
 			</div>
 			<form action="{{ url_for('login') }}" method="post">
-				<label for="username">
-					<i class="fas fa-user"></i>
-				</label>
+				<label for="username"> <i class="fas fa-user"></i> </label>
 				<input type="text" name="username" placeholder="Username" id="username" required>
-				<label for="password">
-					<i class="fas fa-lock"></i>
-				</label>
+
+				<label for="password"> <i class="fas fa-lock"></i> </label>
 				<input type="password" name="password" placeholder="Password" id="password" required>
+
 				<div class="msg">{{ msg }}</div>
 				<input type="submit" value="Login">
 			</form>

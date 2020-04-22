@@ -12,21 +12,48 @@
 				<input type="submit" value="Clock In / Out">
     </form>
 
-    <p>Clocked In: {{session['clocked_in']}}</p>
     {% if session['clocked_in'] %}
-        <p>Current session information: </p>
+        <p>Current Task Information: </p>
         <table>
             <tr>
-                <td> Assignment id: </td>
-                <td>{{ session['ass_id'] }}</td>
+                <td> Task Id: </td>
+                <td>{{ session['t_id'] }}</td>
             </tr>
             <tr>
-                <td> Task id: </td>
-                <td>{{ session['task_id'] }}</td>
+                <td> Task Name: </td>
+                <td>{{ session['task_name'] }}</td>
             </tr>
             <tr>
-                <td> Total time logged: </td>
-                <td>{{ session['total_time'] }}</td>
+                <td> Description: </td>
+                <td>{{ session['description'] }}</td>
+            </tr>
+            <tr>
+                <td> Project Id: </td>
+                <td>{{ session['project_id'] }}</td>
+            </tr>
+            <tr>
+                <td> Planned Start Date: </td>
+                <td>{{ session['planned_start_date'] }}</td>
+            </tr>
+            <tr>
+                <td> Planned End Date: </td>
+                <td>{{ session['planned_end_date'] }}</td>
+            </tr>
+            <tr>
+                <td> Planned Budget: </td>
+                <td>${{ session['planned_budget'] }}</td>
+            </tr>
+             <tr>
+                <td> Actual Start Date: </td>
+                <td>{{ session['actual_start_date'] }}</td>
+            </tr>
+            <tr>
+                <td> Actual End Date: </td>
+                <td>{{ session['actual_end_date'] }}</td>
+            </tr>
+             <tr>
+                <td> Actual Budget: </td>
+                <td>${{ session['actual_budget'] }}</td>
             </tr>
         </table>
     {% endif %}

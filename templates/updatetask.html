@@ -15,24 +15,24 @@
 				<input type="number" name="task_id" placeholder="Task ID" id="task_id" required>
 
 				<label for="project_id"> <i class="fas fa-cogs"></i> </label>
-				<input type="number" name="project_id" placeholder="Project ID" id="project_id" required>
+				<input type="number" name="project_id" placeholder="Project ID">
 <p></p>
 				<label for="name"> <i class="fas fa-hammer"></i> </label>
-				<input type="text" name="name" placeholder="Name" id="name" required>
+				<input type="text" name="name" placeholder="Name">
 
 				<label for="description"> <i class="fas fa-hammer"></i> </label>
-				<input type="text" name="description" placeholder="Description" id="description" required>
+				<input type="text" name="description" placeholder="Description">
 <p></p>
 
 <p>Enter the Planned Start Date and the Planned End Date</p>
 				<label for="start_date"> <i class="fas fa-calendar-alt"></i> </label>
-				<input type="date" name="start_date" placeholder="Planned Start Date" id="start_date" required>
+				<input type="date" name="start_date" placeholder="Planned Start Date">
 
 				<label for="end_date"> <i class="fas fa-calendar-alt"></i> </label>
-				<input type="date" name="end_date" placeholder="Planned End Date" id="end_date" required>
+				<input type="date" name="end_date" placeholder="Planned End Date">
 <p></p>
 				<label for="budget"> <i class="fas fa-donate"></i> </label>
-				<input type="number" name="budget" placeholder="Planned Budget" id="budget" required>
+				<input type="number" name="budget" placeholder="Planned Budget" step=".01">
 <p></p>
 
 <p>If applicable, type in the actual start date and end date</p>
@@ -44,7 +44,7 @@
 
                         <p></p>
 				<label for="budget"> <i class="fas fa-donate"></i> </label>
-				<input type="number" name="actual_budget" placeholder="Actual Budget">
+				<input type="number" name="actual_budget" placeholder="Actual Budget" step=".01">
 
 				<div class="msg">{{ msg }}</div>
 				<p></p>
