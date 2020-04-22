@@ -68,15 +68,15 @@ body {
   	padding: 0 15px;
 }
 .login form input[type="submit"], .register form input[type="submit"] {
-  	width: 100%;
-  	padding: 15px;
-  	margin-top: 20px;
-  	background-color: #3274d6;
-  	border: 0;
-  	cursor: pointer;
-  	font-weight: bold;
-  	color: #ffffff;
-  	transition: background-color 0.2s;
+      width: 100%;
+      padding: 15px;
+      margin-top: 20px;
+      background-color: #3274d6;
+      border: 0;
+      cursor: pointer;
+      font-weight: bold;
+      color: #ffffff;
+      transition: background-color 0.2s;
 }
 .login form input[type="submit"]:hover, .register form input[type="submit"]:hover {
   	background-color: #2868c7;

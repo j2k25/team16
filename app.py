@@ -5,7 +5,6 @@ import MySQLdb.cursors
 import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
-from mysql.connector import MySQLConnection
 
 app = Flask(__name__)
 
@@ -156,7 +155,7 @@ def manager_home():
         account = cursor.fetchone()
         project_list = []
         cursor.execute('SELECT p.id, project_name, project_description, department_id, department_name, '
-                       'planned_start_date, planned_end_date, planned_budget, actual_start_date, actual_end_date, '
+                       'planned_start_date, planned_end_date, planned_budget, actual_start_date, actual_start_date, actual_end_date, '
                        'actual_budget, status_on_tasks FROM project p join department d on p.department_id = d.id')
         while True:
             row = cursor.fetchone()
@@ -650,6 +649,7 @@ def insert_account():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         # Create variables for easy access
         name = request.form['name']
+        dept_id = request.form['dept_id']
         username = request.form['username']
         password = request.form['password']
         is_manager = request.form['is_manager']
@@ -672,8 +672,8 @@ def insert_account():
             msg = 'Please fill out the form!'
         else:
             # Account doesnt exists and the form data is valid, now insert new account into accounts table
-            cursor.execute('INSERT INTO employee_accounts VALUES (DEFAULT, %s, %s, %s, %s, DEFAULT, DEFAULT, %s, %s)',
-                           (name, username, password, is_manager, total_session_time, hourly_wage))
+            cursor.execute('INSERT INTO employee_accounts VALUES (DEFAULT, %s, %s, %s, %s, %s, DEFAULT, DEFAULT, %s, DEFAULT, %s)',
+                           (dept_id, name, username, password, is_manager, total_session_time, hourly_wage))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
             return render_template('insert_account.html', msg=msg)
