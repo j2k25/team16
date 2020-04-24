@@ -1,0 +1,134 @@
+{% extends 'layout.html' %}
+
+{% block title %}Delete{% endblock %}
+
+{% block content %}
+<h2>Delete an Assignment</h2>
+
+    <p> <a href="{{ url_for('delete') }}">Go Back</a> </p>
+
+
+<div class="deleteassigned">
+
+{% if session['delete_type'] == 'account' %}
+    <div class="msg">{{ msg }}</div>
+    <p></p>
+            <table>
+                <tr>
+                    <td> Employee id: </td>
+                    <td> {{ del_acc['id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Department id: </td>
+                    <td> {{ del_acc['dept_id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Employee Name: </td>
+                    <td> {{ del_acc['name'] }} </td>
+                </tr>
+                <tr>
+                    <td> Employee Username: </td>
+                    <td> {{ del_acc['username'] }} </td>
+                </tr>
+                <tr>
+                    <td> Employee Password: </td>
+                    <td> {{ del_acc['password'] }} </td>
+                </tr>
+                <tr>
+                    <td> Employee Manager: </td>
+                    <td> {{ del_acc['is_manager'] }} </td>
+                </tr>
+                <tr>
+                    <td> Hourly Wage: </td>
+                    <td> ${{ del_acc['hourly_wage'] }} </td>
+                </tr>
+            </table>
+{% endif %}
+
+{% if session['delete_type'] == 'assigned' %}
+    <div class="msg">{{ msg }}</div>
+    <p></p>
+            <table>
+                <tr>
+                    <td> Assigned id: </td>
+                    <td> {{ del_assign['id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Task id: </td>
+                    <td> {{ del_assign['task_id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Employee Name: </td>
+                    <td> {{ del_assign['name'] }} </td>
+                </tr>
+                <tr>
+                    <td> Employee Account id: </td>
+                    <td> {{ del_assign['employee_account_id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Department Id: </td>
+                    <td> {{ del_assign['dept_id'] }} </td>
+                </tr>
+            </table>
+{% endif %}
+
+{% if session['delete_type'] == 'task' %}
+    <div class="msg">{{ msg }}</div>
+    <p></p>
+            <table>
+                <tr>
+                    <td> Task Id: </td>
+                    <td> {{ del_task['id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Task Name: </td>
+                    <td> {{ del_task['task_name'] }} </td>
+                </tr>
+                <tr>
+                    <td> Description: </td>
+                    <td> {{ del_task['description'] }} </td>
+                </tr>
+                <tr>
+                    <td> Project Id: </td>
+                    <td> {{ del_task['project_id'] }} </td>
+                </tr>
+            </table>
+{% endif %}
+
+{% if session['delete_type'] == 'project' %}
+    <div class="msg">{{ msg }}</div>
+    <p></p>
+            <table>
+                <tr>
+                    <td> Project Id: </td>
+                    <td> {{ del_proj['id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Project Name: </td>
+                    <td> {{ del_proj['project_name'] }} </td>
+                </tr>
+                <tr>
+                    <td> Description: </td>
+                    <td> {{ del_proj['project_description'] }} </td>
+                </tr>
+                <tr>
+                    <td> Department Id: </td>
+                    <td> {{ del_proj['department_id'] }} </td>
+                </tr>
+                <tr>
+                    <td> Status: </td>
+                    <td> {{ del_proj['status_on_tasks'] }} </td>
+                </tr>
+            </table>
+{% endif %}
+
+<p></p>
+			<form action="{{ url_for('delete_confirm') }}" method="post" autocomplete="off">
+				<label for="id_delete"> <i class="fas fa-exclamation-triangle"></i> </label>
+                <input type="number" name="id_delete" placeholder="Please reenter the ID" id="id_delete" required>
+                <p></p>
+
+                <p>	<input type="submit" value="Confirm Delete"> </p>
+			</form>
+		</div>
+{% endblock %}

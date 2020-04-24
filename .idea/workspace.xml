@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="62c7f877-21b3-4c45-8ea1-b1abb180c5e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/insert_account.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/insert_account.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/manager_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/manager_home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +104,7 @@
       <workItem from="1587324065620" duration="17843000" />
       <workItem from="1587436232167" duration="2937000" />
       <workItem from="1587516631475" duration="7710000" />
-      <workItem from="1587592016121" duration="2560000" />
+      <workItem from="1587592016121" duration="3281000" />
     </task>
     <servers />
   </component>
@@ -127,33 +123,33 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="315" y="119" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1586383332112" />
-    <state width="1281" height="148" key="GridCell.Tab.0.bottom" timestamp="1587596863607">
+    <state width="1281" height="148" key="GridCell.Tab.0.bottom" timestamp="1587601466424">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="148" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1587596863607" />
-    <state width="1281" height="148" key="GridCell.Tab.0.center" timestamp="1587596863605">
+    <state width="1281" height="148" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1587601466424" />
+    <state width="1281" height="148" key="GridCell.Tab.0.center" timestamp="1587601466424">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="148" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1587596863605" />
-    <state width="1281" height="148" key="GridCell.Tab.0.left" timestamp="1587596863605">
+    <state width="1281" height="148" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1587601466424" />
+    <state width="1281" height="148" key="GridCell.Tab.0.left" timestamp="1587601466424">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="148" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1587596863605" />
-    <state width="1281" height="148" key="GridCell.Tab.0.right" timestamp="1587596863606">
+    <state width="1281" height="148" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1587601466424" />
+    <state width="1281" height="148" key="GridCell.Tab.0.right" timestamp="1587601466424">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1281" height="148" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1587596863606" />
+    <state width="1281" height="148" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1587601466424" />
     <state x="150" y="3" key="SettingsEditor" timestamp="1586558240201">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="150" y="3" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1586558240201" />
-    <state x="354" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1587592017263">
+    <state x="354" y="185" key="com.intellij.ide.util.TipDialog" timestamp="1587706861031">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="354" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1587592017263" />
+    <state x="354" y="185" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1587706861031" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dbtest$dbtest.coverage" NAME="dbtest Coverage Results" MODIFIED="1587161854644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/dbtest$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1587596863527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/dbtest$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1587706868472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

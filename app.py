@@ -18,7 +18,7 @@ app.config['MYSQL_DB'] = 'bjbx4fmvqoqiij60'
 # Initialize MySQL
 mysql = MySQL(app)
 
-# http://localhost:5000/pythonlogin/ - this will be the login page, we need to use both GET and POST requests
+#   This will be the login page, we need to use both GET and POST requests
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -1166,6 +1166,73 @@ def delete():
         return redirect(url_for('login'))
 
 
+@app.route('/delete_confirm', methods=['GET', 'POST'])
+def delete_confirm():
+    msg = ''
+    if request.method == 'POST' and 'id_delete' in request.form:
+        id_delete = request.form['id_delete']
+        print(session['delete_type'])
+        if session['delete_type'] == 'assigned':
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute(session['deletestate'], (id_delete,))
+            mysql.connection.commit()
+            session['deletestate'] = ''
+            msg = 'You have successfully deleted an assignment!'
+            return render_template('deleteassigned.html', msg=msg)
+
+        if session['delete_type'] == 'account':
+            if session['deletestate2'] != '':
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute(session['deletestate2'], (id_delete,))
+                mysql.connection.commit()
+                session['deletestate2'] = ''
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute(session['deletestate'], (id_delete,))
+            mysql.connection.commit()
+            session['deletestate'] = ''
+            msg = 'You have successfully deleted an employee account!'
+            return render_template('deleteaccount.html', msg=msg)
+
+        if session['delete_type'] == 'task':
+            if session['deletestate2'] != '':
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute(session['deletestate2'], (id_delete,))
+                mysql.connection.commit()
+                session['deletestate2'] = ''
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute(session['deletestate'], (id_delete,))
+            mysql.connection.commit()
+            session['deletestate'] = ''
+            msg = 'You have successfully deleted a task!'
+            return render_template('deletetask.html', msg=msg)
+
+        if session['delete_type'] == 'project':
+            if session['deletestate3'] != '':
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute(session['deletestate3'], (id_delete,))
+                mysql.connection.commit()
+                session['deletestate3'] = ''
+
+            if session['deletestate2'] != '':
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute(session['deletestate2'], (id_delete,))
+                mysql.connection.commit()
+                session['deletestate2'] = ''
+
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute(session['deletestate'], (id_delete,))
+            mysql.connection.commit()
+            session['deletestate'] = ''
+            msg = 'You have successfully deleted a project!'
+            return render_template('deleteproject.html', msg=msg)
+
+    elif request.method == 'POST':
+        # Form is empty... (no POST data)
+        msg = 'Please fill out the form!'
+    return render_template('delete.html', msg=msg)
+
+
 @app.route('/deleteassigned', methods=['GET', 'POST'])
 def deleteassigned():
     msg = ''
@@ -1174,16 +1241,15 @@ def deleteassigned():
         # Create variables for easy access
         assign_id = request.form['assign_id']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM assigned WHERE id = %s', (assign_id,))
-        account = cursor.fetchone()
-        if account:
+        cursor.execute('SELECT a.id, task_id, name, employee_account_id, dept_id FROM assigned a join '
+                       'employee_accounts e on a.employee_account_id = e.id WHERE a.id = %s', (assign_id,))
+        del_assign = cursor.fetchone()
+        if del_assign:
             deletestate = "DELETE FROM assigned WHERE id = %s"
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute(deletestate, (assign_id,))
-            mysql.connection.commit()
-
-            msg = 'You have successfully deleted an assignment!'
-            return render_template('deleteassigned.html', msg=msg)
+            session['delete_type'] = 'assigned'
+            session['deletestate'] = deletestate
+            msg = 'ARE YOU SURE YOU WANT TO DELETE THIS?'
+            return render_template('delete_confirm.html', del_assign=del_assign, msg=msg)
         else:
             msg = 'No assignment with that ID exists'
             return render_template('deleteassigned.html', msg=msg)
@@ -1196,31 +1262,33 @@ def deleteassigned():
 @app.route('/deleteaccount', methods=['GET', 'POST'])
 def deleteaccount():
     msg = ''
+    session['deletestate2'] = ''
     # Check if "username", "password" and "email" POST requests exist (user submitted form)
     if request.method == 'POST' and 'employee_account_id' in request.form:
         # Create variables for easy access
         employee_account_id = request.form['employee_account_id']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM employee_accounts WHERE id = %s', (employee_account_id,))
-        account = cursor.fetchone()
-        if account:
+        del_acc = cursor.fetchone()
+        if del_acc:
             deletestate2 = "DELETE FROM assigned WHERE employee_account_id = %s"
             deletestate = "DELETE FROM employee_accounts WHERE id = %s"
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT * FROM assigned WHERE employee_account_id = %s', (employee_account_id,))
-            account = cursor.fetchone()
-            if account:
-                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute(deletestate2, (employee_account_id,))
-                mysql.connection.commit()
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute(deletestate, (employee_account_id,))
-            mysql.connection.commit()
-
-            msg = 'You have successfully deleted an account!'
-            return render_template('deleteaccount.html', msg=msg)
+            del_ass = cursor.fetchone()
+            if del_ass:
+                session['delete_type'] = 'account'
+                session['deletestate'] = deletestate
+                session['deletestate2'] = deletestate2
+                msg = 'ARE YOU SURE YOU WANT TO DELETE THIS?'
+                return render_template('delete_confirm.html', del_acc=del_acc, msg=msg)
+            else:
+                session['delete_type'] = 'account'
+                session['deletestate'] = deletestate
+                msg = 'ARE YOU SURE YOU WANT TO DELETE THIS?'
+                return render_template('delete_confirm.html', del_acc=del_acc, msg=msg)
         else:
-            msg = 'No account with that ID exists'
+            msg = 'No assignment with that ID exists'
             return render_template('deleteaccount.html', msg=msg)
     elif request.method == 'POST':
         # Form is empty... (no POST data)
@@ -1231,29 +1299,31 @@ def deleteaccount():
 @app.route('/deletetask', methods=['GET', 'POST'])
 def deletetask():
     msg = ''
+    session['deletestate2'] = ''
     # Check if "username", "password" and "email" POST requests exist (user submitted form)
     if request.method == 'POST' and 'task_id' in request.form:
         # Create variables for easy access
         task_id = request.form['task_id']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM task WHERE id = %s', (task_id,))
-        account = cursor.fetchone()
-        if account:
+        del_task = cursor.fetchone()
+        if del_task:
             deletestate2 = "DELETE FROM assigned WHERE task_id = %s"
             deletestate = "DELETE FROM task WHERE id = %s"
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT * FROM assigned WHERE task_id = %s', (task_id,))
-            account = cursor.fetchone()
-            if account:
-                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute(deletestate2, (task_id,))
-                mysql.connection.commit()
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute(deletestate, (task_id,))
-            mysql.connection.commit()
-
-            msg = 'You have successfully deleted a task!'
-            return render_template('deletetask.html', msg=msg)
+            del_ass = cursor.fetchone()
+            if del_ass:
+                session['delete_type'] = 'task'
+                session['deletestate'] = deletestate
+                session['deletestate2'] = deletestate2
+                msg = 'ARE YOU SURE YOU WANT TO DELETE THIS?'
+                return render_template('delete_confirm.html', del_task=del_task, msg=msg)
+            else:
+                session['delete_type'] = 'task'
+                session['deletestate'] = deletestate
+                msg = 'ARE YOU SURE YOU WANT TO DELETE THIS?'
+                return render_template('delete_confirm.html', del_task=del_task, msg=msg)
         else:
             msg = 'No task with that ID exists'
             return render_template('deletetask.html', msg=msg)
@@ -1266,14 +1336,17 @@ def deletetask():
 @app.route('/deleteproject', methods=['GET', 'POST'])
 def deleteproject():
     msg = ''
+    session['deletestate3'] = ''
+    session['deletestate2'] = ''
     # Check if "username", "password" and "email" POST requests exist (user submitted form)
     if request.method == 'POST' and 'project_id' in request.form:
         # Create variables for easy access
         project_id = request.form['project_id']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM project WHERE id = %s', (project_id,))
-        account = cursor.fetchone()
-        if account:
+        del_proj = cursor.fetchone()
+        if del_proj:
+            session['delete_type'] = 'project'
             deletestate3 = "DELETE FROM assigned WHERE task_id IN (SELECT id FROM task WHERE project_id = %s)"
             deletestate2 = "DELETE FROM task WHERE project_id = %s"
             deletestate = "DELETE FROM project WHERE id = %s"
@@ -1284,23 +1357,19 @@ def deleteproject():
 
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT * FROM assigned WHERE task_id IN (SELECT id FROM task WHERE project_id = %s)', (project_id,))
-            account = cursor.fetchone()
-            if account:
-                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute(deletestate3, (project_id,))
-                mysql.connection.commit()
+            del_ass = cursor.fetchone()
+            if del_ass:
+                session['deletestate3'] = deletestate3
+
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT * FROM task WHERE project_id = %s', (project_id,))
-            account = cursor.fetchone()
-            if account:
-                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                cursor.execute(deletestate2, (project_id,))
-                mysql.connection.commit()
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute(deletestate, (project_id,))
-            mysql.connection.commit()
-            msg = 'You have successfully deleted a project!'
-            return render_template('deleteproject.html', msg=msg)
+            del_task = cursor.fetchone()
+            if del_task:
+                session['deletestate2'] = deletestate2
+
+            session['deletestate'] = deletestate
+            msg = 'ARE YOU SURE YOU WANT TO DELETE THIS?'
+            return render_template('delete_confirm.html', del_proj=del_proj, msg=msg)
         else:
             msg = 'No project with that ID exists'
             return render_template('deleteproject.html', msg=msg)
